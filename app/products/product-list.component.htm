@@ -3,3 +3,22 @@
     My Product List Component
     <pm-customers></pm-customers>
 </div>
+<div>
+    <table *ngIf='products && products.length'>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Is Available</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor='let product of products'>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.isAvailable}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

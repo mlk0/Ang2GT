@@ -9,4 +9,9 @@ import { Component } from "@angular/core";
 export class VendorListComponent{
     title : string = "Hello, made up by these 2 people: LARA & MIRKO";
     borderWidth: Number =5;
+    vendors : any[] =[
+
+        {name:"Acme Sales", city:"Skopje"},
+        {name: "Best Product", city:"Toronto"}
+    ];
 }

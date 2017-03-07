@@ -1,17 +1,48 @@
-<div style="border-color:deepskyblue;border-style: dashed;border-width: 10px"
+<div style="border-color:deepskyblue;border-style: dashed;border-width: 10px">
 
->
-    
 
-<h1>
-{{title}}
+    <h1>
+        {{title}}
 
-</h1>
-<p>Hello, I am the Vendor's List component 123</p>
+    </h1>
+    <p>Hello, I am the Vendor's List component 123</p>
     <p>
 
         lara and tat0 made this love
 
     </p>
+    <div>
+
+        <table *ngIf='vendors && vendors.length'>
+
+            <thead>
+
+                <th>
+
+                    <tr>
+
+                        <td>Name</td>
+
+                        <td>City</td>
+                    </tr>
+                </th>
+            </thead>
+
+
+            <tbody>
+
+                <tr *ngFor='let vendor of vendors'>
+
+                    <td>{{vendor.name}}</td>
+
+                    <td>{{vendor.city}}</td>
+                    </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
 
 </div>
