@@ -11,6 +11,7 @@
         "lint": "tslint ./app/**/*.ts -t verbose",
         "lite": "lite-server",
         "typings": "typings" 
+       
     },  
 
     "license": "ISC",
