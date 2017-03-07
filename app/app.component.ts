@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
     template: `
         <h1>Angular2: Getting Started</h1>
 
-        hi >>>
+        hi bro>>>
     `
 })
 export class AppComponent { }
