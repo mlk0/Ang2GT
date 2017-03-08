@@ -5,7 +5,9 @@ import { ICustomer, Customer } from "./customer";
 
 @Component({
     selector: "pm-customers"
-    , templateUrl: "app/customers/customers-list.component.htm"
+    , templateUrl: "app/customers/customers-list.component.htm",
+    styles:["thead{color:red}"],
+    styleUrls:["app/customers/customers-list.component.css"]
 })
 export class CustomerListComponent {
     componentTitle: string = "List of Customers";

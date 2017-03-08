@@ -1,12 +1,12 @@
 <button (click)='showMyProductsTogle()'>Toggle My Demo</button>
 <div *ngIf='showMyProducts'>
-    <div style="border-color:cadetblue;border-style: dashed;border-width: 10px">
+    <div class="oliveDashed" >
         <h1>{{pageTitle}}</h1>
         My Product List Component
         <pm-customers></pm-customers>
     </div>
-    <div>
-        <table *ngIf='products && productsX.length'>
+    <div class="intro">
+        <table *ngIf='products && productsX.length' >
             <thead>
                 <tr>
                     <th>Name</th>
