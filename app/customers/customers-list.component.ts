@@ -1,5 +1,5 @@
 
-import { Component } from "@angular/core";
+import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 import { ICustomer, Customer } from "./customer";
 
 
@@ -9,7 +9,21 @@ import { ICustomer, Customer } from "./customer";
     styles:["thead{color:red}"],
     styleUrls:["app/customers/customers-list.component.css"]
 })
-export class CustomerListComponent {
+export class CustomerListComponent implements OnInit, OnChanges, OnDestroy{
+
+    ngOnDestroy(): void {
+             console.log("ngOnDestroy for CustomerListComponent")
+        }
+
+        ngOnChanges(changes: SimpleChanges): void {
+            
+            console.log("ngOnChanges for CustomerListComponent" + changes);
+        }
+
+        ngOnInit(): void {
+            console.log("ngOnInit for CustomerListComponent")
+        }
+
     componentTitle: string = "List of Customers";
     customers: Customer[] = [
         new Customer("Stojko", 10, 1),
