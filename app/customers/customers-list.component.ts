@@ -12,5 +12,11 @@ export class CustomerListComponent {
         { name: "Stojko", age: 10 },
         { name: "Kurto", age: 23 }
 
-    ]
+    ];
+
+    showCustomers : Boolean  = false;
+    toggleCustomers() : void {
+        this.showCustomers = !this.showCustomers;
+
+    }
 }

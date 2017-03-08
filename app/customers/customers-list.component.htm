@@ -1,4 +1,4 @@
-<div style="border-color:cornflowerblue;border-style: dashed;border-width: 10px">
+<div style="border-color:cornflowerblue;border-style: dashed;border-width: 10px" *ngIf='showCustomers'>
     <p>{{componentTitle}}</p>
 
     here are some custommers ...
@@ -16,9 +16,11 @@
                 <td>{{customer.age}}</td>
             </tr>
         </tbody>
-<tfoot><tr>
-    {{customers.length}}
-    </tr></tfoot>
+        <tfoot>
+            <tr>
+                {{customers.length}}
+            </tr>
+        </tfoot>
 
 
 
@@ -32,7 +34,8 @@
     </table>
 
     <div>
-            <pm-vendors></pm-vendors>
+        <pm-vendors></pm-vendors>
 
     </div>
 </div>
+<button (click)='toggleCustomers()'>Toggle Customers</button>
