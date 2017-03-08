@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 import { IProduct } from "./product";
 
 @Component({
@@ -9,7 +9,20 @@ import { IProduct } from "./product";
          "app/products/product-list.component1.css"],
     styles : [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
+        ngOnDestroy(): void {
+             console.log("ngOnDestroy for ProductListComponent")
+        }
+
+        ngOnChanges(changes: SimpleChanges): void {
+            
+            console.log("ngOnChanges for ProductListComponent" + changes);
+        }
+
+        ngOnInit(): void {
+            console.log("ngOnInit for ProductListComponent")
+        }
+
     pageTitle: string = "Product List Component";
     imageHeight: number = 50;
     imageWidth: number = 50;
