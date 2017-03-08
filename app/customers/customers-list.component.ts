@@ -1,5 +1,6 @@
 
 import { Component } from "@angular/core";
+import { ICustomer, Customer } from "./customer";
 
 
 @Component({
@@ -8,9 +9,18 @@ import { Component } from "@angular/core";
 })
 export class CustomerListComponent {
     componentTitle: string = "List of Customers";
-    customers: any[] = [
-        { name: "Stojko", age: 10 },
-        { name: "Kurto", age: 23 }
+    customers: Customer[] = [
+        new Customer("Stojko", 10, 1),
+        new Customer("Kurto", 23),
+        new Customer("Prdlo", 32, 2)
+        // { 
+        //     name: "Stojko", 
+        //     age: 10 , 
+        //     numberOfSubscriptions:1 
+        // }
+        // ,
+        // { name: "Kurto", age: 23 , numberOfSubscriptions:0 },
+        // { name: "Prdlo", age: 32 , numberOfSubscriptions:3}
 
     ];
 

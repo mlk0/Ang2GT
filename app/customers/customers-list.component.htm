@@ -8,12 +8,14 @@
             <tr>
                 <td>Name</td>
                 <td>Age</td>
+                <td>Is it Regular</td>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor='let customer of customers'>
                 <td>{{customer.name}}</td>
                 <td>{{customer.age}}</td>
+                <td>{{customer.isRegular()}}</td>
             </tr>
         </tbody>
         <tfoot>
