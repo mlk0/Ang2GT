@@ -1,5 +1,5 @@
 <div class="blueDashed" *ngIf='showCustomers'>
-    <p>{{componentTitle}}</p>
+    <h1>{{componentTitle}}</h1>
 
     here are some custommers ...
 
@@ -23,17 +23,63 @@
                 {{customers.length}}
             </tr>
         </tfoot>
-
-
-
-
-
-
-
-
-
-
     </table>
+
+<div>
+    <h2>Only Teenager Customers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th># Subscriptions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let teenCustomer of customers | teens'>
+            <tr>
+                <td>{{teenCustomer.name}}</td>
+                <td>{{teenCustomer.numberOfSubscriptions}}</td>                
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <h2>Only Senior Customers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th># Subscriptions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let seniorCustomer of customers | seniors'>
+            <tr>
+                <td>{{seniorCustomer.name}}</td>
+                <td>{{seniorCustomer.numberOfSubscriptions}}</td>                
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div>
+    <h2>Only Senior Customers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th># Subscriptions</th>
+            </tr>
+        </thead>
+        <tbody *ngFor='let regular of customers | regulars'>
+            <tr>
+                <td>{{regular.name}}</td>
+                <td>{{regular.numberOfSubscriptions}}</td>                
+            </tr>
+        </tbody>
+    </table>
+</div>
+
 
     <div>
         <pm-vendors></pm-vendors>

@@ -26,9 +26,14 @@ export class CustomerListComponent implements OnInit, OnChanges, OnDestroy{
 
     componentTitle: string = "List of Customers";
     customers: Customer[] = [
-        new Customer("Stojko", 10, 1),
+        new Customer("Kiddo", 10, 1),
         new Customer("Kurto", 23),
-        new Customer("Prdlo", 32, 2)
+        new Customer("Prdlo", 32, 2),
+        new Customer("Oldy", 68, 8),
+        new Customer("Teeny", 16, 0),
+        new Customer("Granny", 67, 4),
+        new Customer("Fancy", 18, 3)
+
         // { 
         //     name: "Stojko", 
         //     age: 10 , 

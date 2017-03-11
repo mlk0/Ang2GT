@@ -4,24 +4,24 @@ import { IProduct } from "./product";
 @Component({
     selector: 'pm-products',
     templateUrl: "app/products/product-list.component.htm",
-    styleUrls : 
-        ["app/products/product-list.component.css",
-         "app/products/product-list.component1.css"],
-    styles : [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
+    styleUrls:
+    ["app/products/product-list.component.css",
+        "app/products/product-list.component1.css"],
+    styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
 })
 export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
-        ngOnDestroy(): void {
-             console.log("ngOnDestroy for ProductListComponent")
-        }
+    ngOnDestroy(): void {
+        console.log("ngOnDestroy for ProductListComponent")
+    }
 
-        ngOnChanges(changes: SimpleChanges): void {
-            
-            console.log("ngOnChanges for ProductListComponent" + changes);
-        }
+    ngOnChanges(changes: SimpleChanges): void {
 
-        ngOnInit(): void {
-            console.log("ngOnInit for ProductListComponent")
-        }
+        console.log("ngOnChanges for ProductListComponent" + changes);
+    }
+
+    ngOnInit(): void {
+        console.log("ngOnInit for ProductListComponent")
+    }
 
     pageTitle: string = "Product List Component";
     imageHeight: number = 50;
@@ -57,6 +57,16 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
             "price": 8.9876,
             "starRating": 2.8,
             "imageUrl": "https://openclipart.org/download/236989/Pliers-fixed.svg"
+        }
+        , {
+            "productId": 1,
+            "productName": "Leaf Rake",
+            "productCode": "GDN-0011",
+            "releaseDate": "March 19, 2016",
+            "description": "Leaf rake with 48-inch wooden handle.",
+            "price": 19.95,
+            "starRating": 3.2,
+            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
         }
     ];
 
