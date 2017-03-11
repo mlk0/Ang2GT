@@ -3,10 +3,11 @@ import { IProduct } from "./product";
 
 @Component({
     selector: 'pm-products',
-    templateUrl: "app/products/product-list.component.htm",
+    moduleId : module.id,
+    templateUrl: "product-list.component.htm",
     styleUrls:
-    ["app/products/product-list.component.css",
-        "app/products/product-list.component1.css"],
+    ["product-list.component.css",
+        "product-list.component1.css"],
     styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
 })
 export class ProductListComponent implements OnInit, OnChanges, OnDestroy {

@@ -2,7 +2,8 @@ import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular
 
 @Component({
     selector : 'pm-vendors',
-    templateUrl : "app/vendors/vendor-list.component.htm"
+    templateUrl : "vendor-list.component.htm",
+    moduleId:module.id
 
 
 })

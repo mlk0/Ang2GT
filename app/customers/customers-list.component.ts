@@ -5,9 +5,10 @@ import { ICustomer, Customer } from "./customer";
 
 @Component({
     selector: "pm-customers"
-    , templateUrl: "app/customers/customers-list.component.htm",
+    , templateUrl: "customers-list.component.htm",
     styles:["thead{color:red}"],
-    styleUrls:["app/customers/customers-list.component.css"]
+    styleUrls:["customers-list.component.css"],
+    moduleId : module.id
 })
 export class CustomerListComponent implements OnInit, OnChanges, OnDestroy{
 
