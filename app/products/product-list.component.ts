@@ -71,7 +71,7 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
         }
     ];
 
-    productFilter: string = "test1";
+    productFilter: string = "";
 
     toggleProductImage(): void {
         this.showProductImages = !this.showProductImages;

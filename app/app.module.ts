@@ -10,6 +10,7 @@ import { ProductListFilter } from "./products/product-list.pipe";
 import { TeenCustomersFilter } from "./customers/customer-list-teens.pipe";
 import { SeniorCustomersFilter } from "./customers/customer-list-seniors.pipe";
 import { RegularSubsribersFilter } from "./customers/customer-list-regulars.pipe";
+import { ProductItemsComponent } from "./item-count/item-count.component";
 
 @NgModule({
   imports: [ BrowserModule 
@@ -24,6 +25,7 @@ import { RegularSubsribersFilter } from "./customers/customer-list-regulars.pipe
     ,TeenCustomersFilter
     ,SeniorCustomersFilter
     ,RegularSubsribersFilter
+    ,ProductItemsComponent
     ],
 
   bootstrap: [ AppComponent ]

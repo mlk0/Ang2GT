@@ -73,6 +73,7 @@
                         <th>Available</th>
                         <th>Price</th>
                         <th>5 Star Rating</th>
+                        <th>Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,6 +88,10 @@
                         <td>{{ product.releaseDate | date:'yyyy-MM-dd'}}</td>
                         <td>{{ product.price | currency}}</td>
                         <td>{{ product.starRating }}</td>
+                        <td>
+                            <pm-item-count></pm-item-count>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>
