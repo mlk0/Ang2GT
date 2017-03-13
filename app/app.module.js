@@ -18,6 +18,7 @@ var customer_list_teens_pipe_1 = require("./customers/customer-list-teens.pipe")
 var customer_list_seniors_pipe_1 = require("./customers/customer-list-seniors.pipe");
 var customer_list_regulars_pipe_1 = require("./customers/customer-list-regulars.pipe");
 var item_count_component_1 = require("./item-count/item-count.component");
+var star_component_1 = require("./shared/star.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,7 +38,8 @@ AppModule = __decorate([
             customer_list_teens_pipe_1.TeenCustomersFilter,
             customer_list_seniors_pipe_1.SeniorCustomersFilter,
             customer_list_regulars_pipe_1.RegularSubsribersFilter,
-            item_count_component_1.ProductItemsComponent
+            item_count_component_1.ProductItemsComponent,
+            star_component_1.StarComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })

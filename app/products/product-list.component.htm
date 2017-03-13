@@ -81,16 +81,23 @@
                     <tr *ngFor='let product of products | productFilterPipe : productFilter'>
                         <!--<td><img src="{{ product.imageUrl }}"> </td>-->
                         <td>
-                            <img [src]="product.imageUrl" [alt]='product.productName' [style.width.px]='imageWidth' [style.height.px]='imageHeight' 
-                            *ngIf='showProductImages'
-                                    (click)='doubleTheImageSizes()' (mouseout)='resetsizeTo50()'>
+                            <img [src]="product.imageUrl" 
+                                [title]='product.productName'  
+                                [alt]='product.productName' 
+                                [style.width.px]='imageWidth' 
+                                [style.height.px]='imageHeight' 
+                            
+                            *ngIf='showProductImages' (click)='doubleTheImageSizes()' (mouseout)='resetsizeTo50()'>
                         </td>
                         <td>{{ product.productName }}</td>
                         <td>{{ product.productCode | lowercase }}</td>
                         <td>{{ product.releaseDate | date:'yyyy-MM-dd'}}</td>
                         <td>{{ product.price | currency}}</td>
-                        <!--<td>{{ product.starRating }}</td>-->
-                        <td> {{ product.starRating }}</td>
+                        
+                        <td>  
+
+                            <ai-star [rating]='product.starRating'></ai-star>
+                        </td>
                         <td>
                             <pm-item-count [itemQuantity]='product.quantity' [itemId]='product.productId' (notifyIteQuantityChanged)='productItemQuantityChanged($event)'></pm-item-count>
 

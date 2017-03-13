@@ -11,6 +11,7 @@ import { TeenCustomersFilter } from "./customers/customer-list-teens.pipe";
 import { SeniorCustomersFilter } from "./customers/customer-list-seniors.pipe";
 import { RegularSubsribersFilter } from "./customers/customer-list-regulars.pipe";
 import { ProductItemsComponent } from "./item-count/item-count.component";
+import { StarComponent } from "./shared/star.component";
 
 @NgModule({
   imports: [ BrowserModule 
@@ -26,6 +27,7 @@ import { ProductItemsComponent } from "./item-count/item-count.component";
     ,SeniorCustomersFilter
     ,RegularSubsribersFilter
     ,ProductItemsComponent
+    ,StarComponent
     ],
 
   bootstrap: [ AppComponent ]
