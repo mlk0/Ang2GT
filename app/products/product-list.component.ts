@@ -38,7 +38,8 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
             "description": "15 gallon capacity rolling garden cart",
             "price": 32.99,
             "starRating": 4.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
+            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png",
+            "quantity":1
         },
         {
             "productId": 5,
@@ -48,7 +49,8 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
             "description": "Curved claw steel hammer",
             "price": 8.9,
             "starRating": 4.8,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
+            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
+            "quantity":0
         },
         {
             "productId": 55,
@@ -58,7 +60,8 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
             "description": "Some Pliers",
             "price": 8.9876,
             "starRating": 2.8,
-            "imageUrl": "https://openclipart.org/download/236989/Pliers-fixed.svg"
+            "imageUrl": "https://openclipart.org/download/236989/Pliers-fixed.svg",
+            "quantity":2
         }
         , {
             "productId": 1,
@@ -68,12 +71,16 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
             "description": "Leaf rake with 48-inch wooden handle.",
             "price": 19.95,
             "starRating": 3.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png"
+            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png",
+            "quantity":6
         }
     ];
 
     productFilter: string = "";
 
+    constructor(){
+        this.productQuantityUpdate();
+    }
     toggleProductImage(): void {
         this.showProductImages = !this.showProductImages;
     }
@@ -90,19 +97,43 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
 
     }
 
+    clearProductQuentity(productId : number): void{
+        var productToBeCleared = this.products.filter((p:IProduct)=>p.productId == productId)[0];
+        productToBeCleared.quantity = 0;
+        this.productQuantityUpdate();
+
+    }
+
+    totalQuantity : number=0;
+
 
 productItemQuantityChanged(itemCount:IItemCount)
 {
 
-console.log('itemCount.ItemId ' + itemCount.ItemId + 'itemCount.ItemQuantity ' + itemCount.ItemQuantity )
+    console.log('itemCount.ItemId ' + itemCount.ItemId + 'itemCount.ItemQuantity ' + itemCount.ItemQuantity )
 
     var updatedProductIndex = this.products.findIndex((p:IProduct)=>p.productId == itemCount.ItemId);
     if(updatedProductIndex != -1){
         var updatedProduct = this.products[updatedProductIndex];
         if(updatedProduct){
-            updatedProduct.starRating = itemCount.ItemQuantity;
+            updatedProduct.quantity = itemCount.ItemQuantity;
         }
     }
+
+    this.productQuantityUpdate();
+}
+
+productQuantityUpdate():void{
+var productQuantities = this.products.map((p:IProduct)=>p.quantity);
+    console.log('productQuantities : ' + productQuantities);
+   
+    //var total = productQuantities.reduce((acc : number, val:number)=>{return acc+val;},0);
+    //if there is single expression in the function, the return is implicit
+    var total = productQuantities.reduce((acc : number, val:number)=>acc+val,0);
+   
+   
+    console.log('total : ' + total);
+    this.totalQuantity = total;
 }
 
 

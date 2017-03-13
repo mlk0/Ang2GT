@@ -13,7 +13,7 @@ export class ProductItemsComponent{
     @Input() itemQuantity : number = 0;
     @Input() itemId : number = 0;
     incrementByOne() : number {
-        this.itemQuantity++;//=this.itemQuantity;
+        this.itemQuantity++;
         this.notifyIteQuantityChanged.emit(new ItemCount(this.itemQuantity, this.itemId));
         return this.itemQuantity;
     };
@@ -24,6 +24,6 @@ export class ProductItemsComponent{
     };
 
     @Output() notifyIteQuantityChanged :  EventEmitter<IItemCount> = new EventEmitter<IItemCount>();
-;
+
 
 }
