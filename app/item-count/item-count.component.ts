@@ -1,5 +1,7 @@
 
-import { Component } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
+
+import { IItemCount, ItemCount } from './itemCount'
 
 @Component({
     selector:"pm-item-count",
@@ -8,12 +10,20 @@ import { Component } from "@angular/core";
     styleUrls:["item-count.component.css"]
 })
 export class ProductItemsComponent{
-    itemQuantity : number = 0;
+    @Input() itemQuantity : number = 0;
+    @Input() itemId : number = 0;
     incrementByOne() : number {
-        return ++this.itemQuantity;
+        this.itemQuantity++;//=this.itemQuantity;
+        this.notifyIteQuantityChanged.emit(new ItemCount(this.itemQuantity, this.itemId));
+        return this.itemQuantity;
     };
     decrementByOne() : number {
-        return --this.itemQuantity;
-    }
+        this.itemQuantity--;
+        this.notifyIteQuantityChanged.emit(new ItemCount(this.itemQuantity, this.itemId));
+        return this.itemQuantity;
+    };
+
+    @Output() notifyIteQuantityChanged :  EventEmitter<IItemCount> = new EventEmitter<IItemCount>();
+;
 
 }

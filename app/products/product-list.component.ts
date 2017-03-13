@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 import { IProduct } from "./product";
+import { IItemCount } from "../item-count/itemCount";
 
 @Component({
     selector: 'pm-products',
@@ -89,6 +90,20 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
 
     }
 
+
+productItemQuantityChanged(itemCount:IItemCount)
+{
+
+console.log('itemCount.ItemId ' + itemCount.ItemId + 'itemCount.ItemQuantity ' + itemCount.ItemQuantity )
+
+    var updatedProductIndex = this.products.findIndex((p:IProduct)=>p.productId == itemCount.ItemId);
+    if(updatedProductIndex != -1){
+        var updatedProduct = this.products[updatedProductIndex];
+        if(updatedProduct){
+            updatedProduct.starRating = itemCount.ItemQuantity;
+        }
+    }
+}
 
 
 

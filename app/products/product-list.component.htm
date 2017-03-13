@@ -87,11 +87,19 @@
                         <td>{{ product.productCode | lowercase }}</td>
                         <td>{{ product.releaseDate | date:'yyyy-MM-dd'}}</td>
                         <td>{{ product.price | currency}}</td>
-                        <td>{{ product.starRating }}</td>
+                        <!--<td>{{ product.starRating }}</td>-->
+                        <td>   {{ product.starRating }}</td>
                         <td>
-                            <pm-item-count></pm-item-count>
+                            <pm-item-count [itemQuantity] = 'product.starRating'
+                             [itemId] = 'product.productId' 
+                             (notifyIteQuantityChanged) = 'productItemQuantityChanged($event)'
+                             ></pm-item-count>
 
                         </td>
+
+ 
+
+
                     </tr>
                 </tbody>
             </table>
