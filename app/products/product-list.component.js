@@ -43,10 +43,12 @@ var ProductListComponent = (function () {
         console.log("ngOnChanges for ProductListComponent" + changes);
     };
     ProductListComponent.prototype.ngOnInit = function () {
+        var _this = this;
         console.log("ngOnInit for ProductListComponent");
-        var allProducts = this._productService.getProducts();
-        console.log("number of products retrieved from ProductService : {allProducts.length}", allProducts.length);
-        this.products = allProducts;
+        var allProducts = this._productService.getProducts()
+            .subscribe(function (s) { return _this.products = s; }, function (e) { return _this.errorMessage = e; });
+        console.log("number of products retrieved from ProductService : {this.products}", this.products);
+        // this.products = allProducts;
         this.productQuantityUpdate();
     };
     ProductListComponent.prototype.toggleProductImage = function () {

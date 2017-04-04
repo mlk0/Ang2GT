@@ -3,6 +3,7 @@ import { IProduct } from "./product";
 import { IItemCount } from "../item-count/itemCount";
 import { ProductService } from "./product-service";
 import { CustomerService } from "../customers/customers-service";
+import { Observable } from "rxjs/Observable";
 
 @Component({
     selector: 'pm-products',
@@ -15,6 +16,7 @@ import { CustomerService } from "../customers/customers-service";
     ,providers : [CustomerService]
 })
 export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
+        errorMessage: any;
     ngOnDestroy(): void {
         console.log("ngOnDestroy for ProductListComponent")
     }
@@ -27,11 +29,14 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
     ngOnInit(): void {
         console.log("ngOnInit for ProductListComponent");
 
-        var allProducts = this._productService.getProducts();
+        var allProducts = this._productService.getProducts()
+        .subscribe(s=>this.products = s, e=> this.errorMessage = <any>e)
         
-        console.log("number of products retrieved from ProductService : {allProducts.length}", allProducts.length);
+        ;
         
-        this.products = allProducts;
+        console.log("number of products retrieved from ProductService : {this.products}", this.products);
+        
+       // this.products = allProducts;
         this.productQuantityUpdate();
          
     }

@@ -1,9 +1,83 @@
 import { IProduct } from "./product";
 import { Injectable } from "@angular/core";
+import { Http, Response } from "@angular/http";
+import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class ProductService {
-    getProducts() : IProduct[]{
+       
+      private  _productsUrl : string =  'http://a2services.azurewebsites.net/api/products'; // 'api/products/productsWithQuantities.json';
+
+
+
+    constructor(private _http: Http){}
+
+
+    getProducts() : Observable<IProduct[]> {
+    console.log("this._productsUrl : " + this._productsUrl);
+    return this._http.get(this._productsUrl)
+    //I am putting this do first to capture the orignal json
+    .do(data=>console.log("products response : " + JSON.stringify(data)))
+    //then call to map that is using a mapping method where I can examine if the 
+    //cast succeeded or failed due to incorrect json
+    //if map is excuted first and do second, the log of the oriinal json will be missing in console.log
+    
+    .catch(this.handleError)
+    .map((r:Response)=> this.castProductList(r)   )
+    
+    
+    
+    ;
+ 
+}
+
+castProductList(response : Response) : IProduct[]{
+    console.log("in castProductList");
+    var products = null;
+    try
+    {
+       products = <IProduct[]>response.json();
+       console.log("in castProductList products.length : " + products.length);
+    }
+    catch(e)
+    {
+      console.log("ERROR in castProductList: " +  e);
+    }
+    return products;
+}
+
+// getProducts() : Observable<IProduct[]> {
+//     console.log("this._productsUrl : " + this._productsUrl);
+//     return this._http.get(this._productsUrl).map((r:Response)=><IProduct[]>r.json())
+//      .do(data=>console.log("products response : " + JSON.stringify(data))) 
+
+//    // .do(data=>console.log("products response : " +  data)
+//     .catch(this.handleError)
+//     ;
+
+//     //var productListResponse = productListObservableResponse.map((r:Response)=><IProduct[]>r.json());
+
+
+     
+
+//    // return productListResponse;
+// }
+ 
+      
+
+
+     
+ 
+
+
+handleError(error: Response) : any {
+    console.log("product list ERROR : " + JSON.stringify(error))
+}
+
+    getProductsX() : IProduct[]{
 
         var allProducts = [
                     {
