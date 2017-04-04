@@ -1,0 +1,9 @@
+[
+    { "name":"Kiddo", "age":10, "numberOfSubscriptions":1   },
+    { "name":"Kurto", "age":23, "numberOfSubscriptions":0   },
+    { "name":"Prdlo", "age":32, "numberOfSubscriptions":2   },
+    { "name":"Oldy", "age":68, "numberOfSubscriptions":8   },
+    { "name":"Teeny", "age":16, "numberOfSubscriptions":0   },
+    { "name":"Granny", "age":67, "numberOfSubscriptions":4   },
+    { "name":"Fancy", "age":18, "numberOfSubscriptions":3   }
+]

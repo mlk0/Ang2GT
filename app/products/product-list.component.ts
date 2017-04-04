@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 import { IProduct } from "./product";
 import { IItemCount } from "../item-count/itemCount";
+import { ProductService } from "./product-service";
+import { CustomerService } from "../customers/customers-service";
 
 @Component({
     selector: 'pm-products',
@@ -10,6 +12,7 @@ import { IItemCount } from "../item-count/itemCount";
     ["product-list.component.css",
         "product-list.component1.css"],
     styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
+    ,providers : [CustomerService]
 })
 export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
     ngOnDestroy(): void {
@@ -22,65 +25,29 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnInit(): void {
-        console.log("ngOnInit for ProductListComponent")
+        console.log("ngOnInit for ProductListComponent");
+
+        var allProducts = this._productService.getProducts();
+        
+        console.log("number of products retrieved from ProductService : {allProducts.length}", allProducts.length);
+        
+        this.products = allProducts;
+        this.productQuantityUpdate();
+         
     }
 
     pageTitle: string = "Product List Component";
     imageHeight: number = 50;
     imageWidth: number = 50;
     showProductImages: boolean = true;
-    products: IProduct[] = [
-        {
-            "productId": 2,
-            "productName": "Garden Cart",
-            "productCode": "GDN-0023",
-            "releaseDate": "March 18, 2016",
-            "description": "15 gallon capacity rolling garden cart",
-            "price": 32.99,
-            "starRating": 4.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png",
-            "quantity":1
-        },
-        {
-            "productId": 5,
-            "productName": "Hammer",
-            "productCode": "TBX-0048",
-            "releaseDate": "May 21, 2016",
-            "description": "Curved claw steel hammer",
-            "price": 8.9,
-            "starRating": 4.8,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
-            "quantity":0
-        },
-        {
-            "productId": 55,
-            "productName": "Pliers",
-            "productCode": "TBX-1012",
-            "releaseDate": "2016-01-05",
-            "description": "Some Pliers",
-            "price": 8.9876,
-            "starRating": 2.8,
-            "imageUrl": "https://openclipart.org/download/236989/Pliers-fixed.svg",
-            "quantity":2
-        }
-        , {
-            "productId": 1,
-            "productName": "Leaf Rake",
-            "productCode": "GDN-0011",
-            "releaseDate": "March 19, 2016",
-            "description": "Leaf rake with 48-inch wooden handle.",
-            "price": 19.95,
-            "starRating": 3.2,
-            "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png",
-            "quantity":6
-        }
-    ];
-
+    products: IProduct[];
+    
     productFilter: string = "";
 
-    constructor(){
+    constructor(private _productService : ProductService){
         this.productQuantityUpdate();
     }
+   
     toggleProductImage(): void {
         this.showProductImages = !this.showProductImages;
     }
@@ -124,6 +91,9 @@ productItemQuantityChanged(itemCount:IItemCount)
 }
 
 productQuantityUpdate():void{
+
+if(this.products){
+
 var productQuantities = this.products.map((p:IProduct)=>p.quantity);
     console.log('productQuantities : ' + productQuantities);
    
@@ -132,8 +102,12 @@ var productQuantities = this.products.map((p:IProduct)=>p.quantity);
     var total = productQuantities.reduce((acc : number, val:number)=>acc+val,0);
    
    
-    console.log('total : ' + total);
+    console.log('productQuantities total : ' + total);
     this.totalQuantity = total;
+
+}
+
+
 }
 
 

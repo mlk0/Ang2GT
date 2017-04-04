@@ -1,6 +1,7 @@
 
 import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 import { ICustomer, Customer } from "./customer";
+import { CustomerService } from "./customers-service";
 
 
 @Component({
@@ -22,33 +23,24 @@ export class CustomerListComponent implements OnInit, OnChanges, OnDestroy{
         }
 
         ngOnInit(): void {
-            console.log("ngOnInit for CustomerListComponent")
+            console.log("ngOnInit for CustomerListComponent");
+
+                var allCustomers = this._customerService.getCustomers();
+                console.log("customer-list.component constructor - retrieved number of customers from customer service : " + allCustomers.length);
+                this.customers = allCustomers;
+
         }
 
     componentTitle: string = "List of Customers";
-    customers: Customer[] = [
-        new Customer("Kiddo", 10, 1),
-        new Customer("Kurto", 23),
-        new Customer("Prdlo", 32, 2),
-        new Customer("Oldy", 68, 8),
-        new Customer("Teeny", 16, 0),
-        new Customer("Granny", 67, 4),
-        new Customer("Fancy", 18, 3)
-
-        // { 
-        //     name: "Stojko", 
-        //     age: 10 , 
-        //     numberOfSubscriptions:1 
-        // }
-        // ,
-        // { name: "Kurto", age: 23 , numberOfSubscriptions:0 },
-        // { name: "Prdlo", age: 32 , numberOfSubscriptions:3}
-
-    ];
+    customers: Customer[] = null;
 
     showCustomers : Boolean  = false;
     toggleCustomers() : void {
         this.showCustomers = !this.showCustomers;
 
+    }
+
+    constructor(private _customerService : CustomerService){
+       
     }
 }

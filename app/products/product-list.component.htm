@@ -64,9 +64,15 @@
                 <thead>
                     <tr>
                         <th>
-                            <button class='btn btn-primary' (click)='toggleProductImage()'>
-                                Show Image
+                            <button class='btn btn-primary' (click)='toggleProductImage()'  >
+                                {{showProductImages ? 'Hide' : 'Show'}} Images
                             </button>
+
+                            <!--this one is not working-->
+                            <!--<button class='btn btn-primary' (click)='toggleProductImage()' 
+                            value="{{showProductImages ? 'Hide' : 'Show'}} Images">                                
+                            </button>-->
+
                         </th>
                         <th>Product</th>
                         <th>Code</th>

@@ -5,29 +5,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var customer_1 = require("./customer");
+var customers_service_1 = require("./customers-service");
 var CustomerListComponent = (function () {
-    function CustomerListComponent() {
+    function CustomerListComponent(_customerService) {
+        this._customerService = _customerService;
         this.componentTitle = "List of Customers";
-        this.customers = [
-            new customer_1.Customer("Kiddo", 10, 1),
-            new customer_1.Customer("Kurto", 23),
-            new customer_1.Customer("Prdlo", 32, 2),
-            new customer_1.Customer("Oldy", 68, 8),
-            new customer_1.Customer("Teeny", 16, 0),
-            new customer_1.Customer("Granny", 67, 4),
-            new customer_1.Customer("Fancy", 18, 3)
-            // { 
-            //     name: "Stojko", 
-            //     age: 10 , 
-            //     numberOfSubscriptions:1 
-            // }
-            // ,
-            // { name: "Kurto", age: 23 , numberOfSubscriptions:0 },
-            // { name: "Prdlo", age: 32 , numberOfSubscriptions:3}
-        ];
+        this.customers = null;
         this.showCustomers = false;
     }
     CustomerListComponent.prototype.ngOnDestroy = function () {
@@ -38,6 +26,9 @@ var CustomerListComponent = (function () {
     };
     CustomerListComponent.prototype.ngOnInit = function () {
         console.log("ngOnInit for CustomerListComponent");
+        var allCustomers = this._customerService.getCustomers();
+        console.log("customer-list.component constructor - retrieved number of customers from customer service : " + allCustomers.length);
+        this.customers = allCustomers;
     };
     CustomerListComponent.prototype.toggleCustomers = function () {
         this.showCustomers = !this.showCustomers;
@@ -51,7 +42,8 @@ CustomerListComponent = __decorate([
         styles: ["thead{color:red}"],
         styleUrls: ["customers-list.component.css"],
         moduleId: module.id
-    })
+    }),
+    __metadata("design:paramtypes", [customers_service_1.CustomerService])
 ], CustomerListComponent);
 exports.CustomerListComponent = CustomerListComponent;
 //# sourceMappingURL=customers-list.component.js.map

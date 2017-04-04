@@ -10,58 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var product_service_1 = require("./product-service");
+var customers_service_1 = require("../customers/customers-service");
 var ProductListComponent = (function () {
-    function ProductListComponent() {
+    function ProductListComponent(_productService) {
+        this._productService = _productService;
         this.pageTitle = "Product List Component";
         this.imageHeight = 50;
         this.imageWidth = 50;
         this.showProductImages = true;
-        this.products = [
-            {
-                "productId": 2,
-                "productName": "Garden Cart",
-                "productCode": "GDN-0023",
-                "releaseDate": "March 18, 2016",
-                "description": "15 gallon capacity rolling garden cart",
-                "price": 32.99,
-                "starRating": 4.2,
-                "imageUrl": "http://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png",
-                "quantity": 1
-            },
-            {
-                "productId": 5,
-                "productName": "Hammer",
-                "productCode": "TBX-0048",
-                "releaseDate": "May 21, 2016",
-                "description": "Curved claw steel hammer",
-                "price": 8.9,
-                "starRating": 4.8,
-                "imageUrl": "http://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png",
-                "quantity": 0
-            },
-            {
-                "productId": 55,
-                "productName": "Pliers",
-                "productCode": "TBX-1012",
-                "releaseDate": "2016-01-05",
-                "description": "Some Pliers",
-                "price": 8.9876,
-                "starRating": 2.8,
-                "imageUrl": "https://openclipart.org/download/236989/Pliers-fixed.svg",
-                "quantity": 2
-            },
-            {
-                "productId": 1,
-                "productName": "Leaf Rake",
-                "productCode": "GDN-0011",
-                "releaseDate": "March 19, 2016",
-                "description": "Leaf rake with 48-inch wooden handle.",
-                "price": 19.95,
-                "starRating": 3.2,
-                "imageUrl": "http://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png",
-                "quantity": 6
-            }
-        ];
         this.productFilter = "";
         this.totalQuantity = 0;
         this.showMyProducts = false; //i just want to hide this since it is exploring using the compoenent as a directive with nesting but it does not look good
@@ -87,6 +44,10 @@ var ProductListComponent = (function () {
     };
     ProductListComponent.prototype.ngOnInit = function () {
         console.log("ngOnInit for ProductListComponent");
+        var allProducts = this._productService.getProducts();
+        console.log("number of products retrieved from ProductService : {allProducts.length}", allProducts.length);
+        this.products = allProducts;
+        this.productQuantityUpdate();
     };
     ProductListComponent.prototype.toggleProductImage = function () {
         this.showProductImages = !this.showProductImages;
@@ -116,13 +77,15 @@ var ProductListComponent = (function () {
         this.productQuantityUpdate();
     };
     ProductListComponent.prototype.productQuantityUpdate = function () {
-        var productQuantities = this.products.map(function (p) { return p.quantity; });
-        console.log('productQuantities : ' + productQuantities);
-        //var total = productQuantities.reduce((acc : number, val:number)=>{return acc+val;},0);
-        //if there is single expression in the function, the return is implicit
-        var total = productQuantities.reduce(function (acc, val) { return acc + val; }, 0);
-        console.log('total : ' + total);
-        this.totalQuantity = total;
+        if (this.products) {
+            var productQuantities = this.products.map(function (p) { return p.quantity; });
+            console.log('productQuantities : ' + productQuantities);
+            //var total = productQuantities.reduce((acc : number, val:number)=>{return acc+val;},0);
+            //if there is single expression in the function, the return is implicit
+            var total = productQuantities.reduce(function (acc, val) { return acc + val; }, 0);
+            console.log('productQuantities total : ' + total);
+            this.totalQuantity = total;
+        }
     };
     ProductListComponent.prototype.showMyProductsTogle = function () {
         this.showMyProducts = !this.showMyProducts;
@@ -136,9 +99,10 @@ ProductListComponent = __decorate([
         templateUrl: "product-list.component.htm",
         styleUrls: ["product-list.component.css",
             "product-list.component1.css"],
-        styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
+        styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"],
+        providers: [customers_service_1.CustomerService]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [product_service_1.ProductService])
 ], ProductListComponent);
 exports.ProductListComponent = ProductListComponent;
 //# sourceMappingURL=product-list.component.js.map
