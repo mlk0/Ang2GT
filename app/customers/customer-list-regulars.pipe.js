@@ -12,7 +12,8 @@ var RegularSubsribersFilter = (function () {
     }
     RegularSubsribersFilter.prototype.transform = function (value) {
         if (value) {
-            return value.filter(function (c) { return c.isRegular(); });
+            var filtered = value.filter(function (c) { return c.isRegular(); });
+            return filtered;
         }
         return value;
     };

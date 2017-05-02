@@ -25,10 +25,12 @@ var CustomerListComponent = (function () {
         console.log("ngOnChanges for CustomerListComponent" + changes);
     };
     CustomerListComponent.prototype.ngOnInit = function () {
+        var _this = this;
         console.log("ngOnInit for CustomerListComponent");
-        var allCustomers = this._customerService.getCustomers();
-        console.log("customer-list.component constructor - retrieved number of customers from customer service : " + allCustomers.length);
-        this.customers = allCustomers;
+        var allCustomers = this._customerService.getCustomers()
+            .subscribe(function (s) { return _this.customers = s; }, function (e) { return _this.errorMessage = e; });
+        // console.log("customer-list.component constructor - retrieved number of customers from customer service : " + allCustomers.length);
+        // this.customers = allCustomers;
     };
     CustomerListComponent.prototype.toggleCustomers = function () {
         this.showCustomers = !this.showCustomers;

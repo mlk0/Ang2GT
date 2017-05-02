@@ -7,9 +7,11 @@ import { ICustomer } from "./customer";
 export class SeniorCustomersFilter implements PipeTransform {
     transform(value: ICustomer[]) {
         if (value) {
-            return value.filter((c: ICustomer) => c.age >= 65);
-
-        }
+            
+            var filtered = value.filter((c: ICustomer) => c.age >= 65);
+            return filtered;
+        
+    }
         return value;
     }
 

@@ -2,7 +2,7 @@
     <h1>{{componentTitle}}</h1>
 
     here are some custommers ...
-
+Error : {{errorMessage}}
     <table *ngIf='customers && customers.length'>
         <thead>
             <tr>
@@ -32,12 +32,14 @@
             <tr>
                 <th>Name</th>
                 <th># Subscriptions</th>
+                <th>Age</th>
             </tr>
         </thead>
         <tbody *ngFor='let teenCustomer of customers | teens'>
             <tr>
                 <td>{{teenCustomer.name}}</td>
                 <td>{{teenCustomer.numberOfSubscriptions}}</td>                
+                <td>{{teenCustomer.age}}</td>                
             </tr>
         </tbody>
     </table>
@@ -50,12 +52,14 @@
             <tr>
                 <th>Name</th>
                 <th># Subscriptions</th>
+                <th>Age</th>
             </tr>
         </thead>
         <tbody *ngFor='let seniorCustomer of customers | seniors'>
             <tr>
                 <td>{{seniorCustomer.name}}</td>
-                <td>{{seniorCustomer.numberOfSubscriptions}}</td>                
+                <td>{{seniorCustomer.numberOfSubscriptions}}</td>   
+                <td>{{seniorCustomer.age}}</td>                             
             </tr>
         </tbody>
     </table>
@@ -63,7 +67,7 @@
 
 
 <div>
-    <h2>Only Senior Customers</h2>
+    <h2>Only Regular Customers</h2>
     <table>
         <thead>
             <tr>

@@ -6,6 +6,10 @@
         <pm-customers></pm-customers>
     </div>
     <div class="intro">
+
+
+        
+
         <table *ngIf='products && productsX.length'>
             <thead>
                 <tr>
@@ -60,6 +64,10 @@
             </div>
         </div>
         <div class='table-responsive'>
+
+Error : {{errorMessage}}
+
+
             <table class='table' *ngIf='products && products.length'>
                 <thead>
                     <tr>

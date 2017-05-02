@@ -13,7 +13,7 @@ export class Customer implements ICustomer {
    // name: string;
     // age: number;
     // numberOfSubscriptions: number;
-    isRegular(): boolean {
+    public isRegular(): boolean {
         return this.numberOfSubscriptions > 0;
     }
 }

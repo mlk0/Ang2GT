@@ -8,8 +8,11 @@ import { ICustomer } from "./customer";
 export class TeenCustomersFilter implements PipeTransform {
     transform(value: ICustomer[]) {
         if(value){
-            return  value.filter((c:ICustomer)=>c.age<20);
-        }
+
+            var filtered =  value.filter((c:ICustomer)=>c.age<20);
+            return filtered;
+        
+    }
         return value;
     }
 

@@ -12,7 +12,8 @@ var TeenCustomersFilter = (function () {
     }
     TeenCustomersFilter.prototype.transform = function (value) {
         if (value) {
-            return value.filter(function (c) { return c.age < 20; });
+            var filtered = value.filter(function (c) { return c.age < 20; });
+            return filtered;
         }
         return value;
     };

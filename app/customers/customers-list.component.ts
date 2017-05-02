@@ -11,7 +11,8 @@ import { CustomerService } from "./customers-service";
     styleUrls:["customers-list.component.css"],
     moduleId : module.id
 })
-export class CustomerListComponent implements OnInit, OnChanges, OnDestroy{
+export class CustomerListComponent implements OnInit, OnChanges, OnDestroy {
+        errorMessage: any;
 
     ngOnDestroy(): void {
              console.log("ngOnDestroy for CustomerListComponent")
@@ -25,9 +26,12 @@ export class CustomerListComponent implements OnInit, OnChanges, OnDestroy{
         ngOnInit(): void {
             console.log("ngOnInit for CustomerListComponent");
 
-                var allCustomers = this._customerService.getCustomers();
-                console.log("customer-list.component constructor - retrieved number of customers from customer service : " + allCustomers.length);
-                this.customers = allCustomers;
+                var allCustomers = this._customerService.getCustomers()
+.subscribe(s=>this.customers = s, e=>this.errorMessage = <any>e);
+
+
+                // console.log("customer-list.component constructor - retrieved number of customers from customer service : " + allCustomers.length);
+                // this.customers = allCustomers;
 
         }
 

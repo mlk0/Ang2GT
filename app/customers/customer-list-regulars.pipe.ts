@@ -1,13 +1,15 @@
 import { PipeTransform, Pipe } from "@angular/core";
-import { Customer } from "./customer";
+import { Customer, ICustomer } from "./customer";
 
 @Pipe({
     name:"regulars"
 })
 export class RegularSubsribersFilter implements PipeTransform {
-    transform(value: Customer[]) {
+    transform(value: ICustomer[]) {
         if(value){
-                return value.filter((c:Customer)=>c.isRegular());
+
+            var filtered =  value.filter((c:ICustomer)=>c.isRegular());
+            return filtered;
 
         }
         return value;

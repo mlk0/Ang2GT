@@ -12,7 +12,8 @@ var SeniorCustomersFilter = (function () {
     }
     SeniorCustomersFilter.prototype.transform = function (value) {
         if (value) {
-            return value.filter(function (c) { return c.age >= 65; });
+            var filtered = value.filter(function (c) { return c.age >= 65; });
+            return filtered;
         }
         return value;
     };
