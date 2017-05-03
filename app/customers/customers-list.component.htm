@@ -1,14 +1,14 @@
 <div class="blueDashed" *ngIf='showCustomers'>
     <h1>{{componentTitle}}</h1>
 
-    here are some custommers ...
-Error : {{errorMessage}}
+    here are some custommers ... Error : {{errorMessage}}
     <table *ngIf='customers && customers.length'>
         <thead>
             <tr>
                 <td>Name</td>
                 <td>Age</td>
                 <td>Is it Regular</td>
+                <td>Action</td>
             </tr>
         </thead>
         <tbody>
@@ -16,78 +16,91 @@ Error : {{errorMessage}}
                 <td>{{customer.name}}</td>
                 <td>{{customer.age}}</td>
                 <td>{{customer.isRegular()}}</td>
+                <td><button (click)='removeCustomer(customer)'>Remove</button> </td>
             </tr>
         </tbody>
         <tfoot>
             <tr>
                 {{customers.length}}
             </tr>
+            <tr>
+                <td>Name </td>
+                <td>Age </td>
+                <td># Subscritions </td>
+                  <td></td>
+            </tr>
+            <tr>
+                <td> <input type='text' [(ngModel)]='newCustomer.name' /> </td>
+                <td> <input type='text' [(ngModel)]='newCustomer.age' /> </td>
+                <td> <input type='text' [(ngModel)]='newCustomer.numberOfSubscriptions' /> </td>
+                <td> <button (click)='addNewCustomer()'  >Add</button> </td>
+            </tr>
         </tfoot>
     </table>
 
-<div>
-    <h2>Only Teenager Customers</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th># Subscriptions</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody *ngFor='let teenCustomer of customers | teens'>
-            <tr>
-                <td>{{teenCustomer.name}}</td>
-                <td>{{teenCustomer.numberOfSubscriptions}}</td>                
-                <td>{{teenCustomer.age}}</td>                
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div>
+        <h2>Only Teenager Customers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th># Subscriptions</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody *ngFor='let teenCustomer of customers | teens'>
+                <tr>
+                    <td>{{teenCustomer.name}}</td>
+                    <td>{{teenCustomer.numberOfSubscriptions}}</td>
+                    <td>{{teenCustomer.age}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-<div>
-    <h2>Only Senior Customers</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th># Subscriptions</th>
-                <th>Age</th>
-            </tr>
-        </thead>
-        <tbody *ngFor='let seniorCustomer of customers | seniors'>
-            <tr>
-                <td>{{seniorCustomer.name}}</td>
-                <td>{{seniorCustomer.numberOfSubscriptions}}</td>   
-                <td>{{seniorCustomer.age}}</td>                             
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div>
+        <h2>Only Senior Customers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th># Subscriptions</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody *ngFor='let seniorCustomer of customers | seniors'>
+                <tr>
+                    <td>{{seniorCustomer.name}}</td>
+                    <td>{{seniorCustomer.numberOfSubscriptions}}</td>
+                    <td>{{seniorCustomer.age}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
-<div>
-    <h2>Only Regular Customers</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th># Subscriptions</th>
-            </tr>
-        </thead>
-        <tbody *ngFor='let regular of customers | regulars'>
-            <tr>
-                <td>{{regular.name}}</td>
-                <td>{{regular.numberOfSubscriptions}}</td>                
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <div>
+        <h2>Only Regular Customers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th># Subscriptions</th>
+                </tr>
+            </thead>
+            <tbody *ngFor='let regular of customers | regulars'>
+                <tr>
+                    <td>{{regular.name}}</td>
+                    <td>{{regular.numberOfSubscriptions}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 
 
     <div>
         <pm-vendors></pm-vendors>
-
     </div>
 </div>
 <button (click)='toggleCustomers()'>Toggle Customers</button>

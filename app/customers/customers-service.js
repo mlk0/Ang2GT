@@ -18,20 +18,19 @@ require("rxjs/add/operator/catch");
 var CustomerService = (function () {
     function CustomerService(_http) {
         this._http = _http;
+        // getCustomersX() : Customer[]{
+        //     var allCustomers = [
+        //     new Customer("Kiddo", 10, 1),
+        //     new Customer("Kurto", 23),
+        //     new Customer("Prdlo", 32, 2),
+        //     new Customer("Oldy", 68, 8),
+        //     new Customer("Teeny", 16, 0),
+        //     new Customer("Granny", 67, 4),
+        //     new Customer("Fancy", 18, 3)]
+        //     return allCustomers;
+        // }
         this._customersUrl = "http://a2services.azurewebsites.net/api/customers";
     }
-    CustomerService.prototype.getCustomersX = function () {
-        var allCustomers = [
-            new customer_1.Customer("Kiddo", 10, 1),
-            new customer_1.Customer("Kurto", 23),
-            new customer_1.Customer("Prdlo", 32, 2),
-            new customer_1.Customer("Oldy", 68, 8),
-            new customer_1.Customer("Teeny", 16, 0),
-            new customer_1.Customer("Granny", 67, 4),
-            new customer_1.Customer("Fancy", 18, 3)
-        ];
-        return allCustomers;
-    };
     CustomerService.prototype.handleError = function (error) {
         console.log("customers list ERROR : " + JSON.stringify(error));
     };
@@ -54,6 +53,28 @@ var CustomerService = (function () {
             .do(function (d) { return console.log("customers response : " + JSON.stringify(d)); })
             .catch(this.handleError)
             .map(function (r) { return _this.castCustomersList(r); });
+        return result;
+    };
+    CustomerService.prototype.addCustomer = function (customer) {
+        console.log("addCustomer : " + JSON.stringify(customer));
+        var bodyString = JSON.stringify(customer); // Stringify payload
+        var requestHeaders = new http_1.Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
+        var options = new http_1.RequestOptions({ headers: requestHeaders }); //// Create a request option
+        // var httpResponseStatus =   this._http.post(this._customersUrl, JSON.stringify(customer), config )
+        var httpResponseStatus = this._http.post(this._customersUrl, JSON.stringify(customer), new http_1.RequestOptions({ headers: new http_1.Headers({ 'Content-Type': 'application/json' }) }))
+            .do(function (d) { return console.log("customers response : " + JSON.stringify(d)); })
+            .catch(this.handleError)
+            .map(function (r) { return r.status; });
+        return httpResponseStatus;
+    };
+    CustomerService.prototype.removeCustomer = function (customer) {
+        console.log("removeCustomer : " + JSON.stringify(customer));
+        var body = JSON.stringify(customer);
+        var options = new http_1.RequestOptions({ body: body, headers: new http_1.Headers({ 'Content-Type': 'application/json' }) });
+        var result = this._http.delete(this._customersUrl, options)
+            .do(function (d) { return console.log("removeCustomer response : " + JSON.stringify(d)); })
+            .catch(this.handleError)
+            .map(function (r) { return r.status; });
         return result;
     };
     return CustomerService;

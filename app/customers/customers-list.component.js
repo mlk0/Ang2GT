@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var customer_1 = require("./customer");
 var customers_service_1 = require("./customers-service");
 var CustomerListComponent = (function () {
     function CustomerListComponent(_customerService) {
@@ -17,6 +18,7 @@ var CustomerListComponent = (function () {
         this.componentTitle = "List of Customers";
         this.customers = null;
         this.showCustomers = false;
+        this.newCustomer = new customer_1.Customer("", 0);
     }
     CustomerListComponent.prototype.ngOnDestroy = function () {
         console.log("ngOnDestroy for CustomerListComponent");
@@ -25,15 +27,37 @@ var CustomerListComponent = (function () {
         console.log("ngOnChanges for CustomerListComponent" + changes);
     };
     CustomerListComponent.prototype.ngOnInit = function () {
-        var _this = this;
         console.log("ngOnInit for CustomerListComponent");
-        var allCustomers = this._customerService.getCustomers()
-            .subscribe(function (s) { return _this.customers = s; }, function (e) { return _this.errorMessage = e; });
+        this.getCustomers();
         // console.log("customer-list.component constructor - retrieved number of customers from customer service : " + allCustomers.length);
         // this.customers = allCustomers;
     };
     CustomerListComponent.prototype.toggleCustomers = function () {
         this.showCustomers = !this.showCustomers;
+    };
+    CustomerListComponent.prototype.getCustomers = function () {
+        var _this = this;
+        var allCustomers = this._customerService.getCustomers()
+            .subscribe(function (s) { return _this.customers = s; }, function (e) { return _this.errorMessage = e; });
+    };
+    CustomerListComponent.prototype.addNewCustomer = function () {
+        var _this = this;
+        var httpStatusCode = this._customerService.addCustomer(this.newCustomer)
+            .subscribe(function (s) { return _this.refreshCustomers(s); }, function (e) { return _this.errorMessage = e; });
+    };
+    CustomerListComponent.prototype.refreshCustomers = function (httpStatus) {
+        if (httpStatus == 200) {
+            this.errorMessage = "Success";
+            this.getCustomers();
+            this.newCustomer = new customer_1.Customer("", 0);
+        }
+        else {
+            this.errorMessage = "Failed adding or removing customer - httpStatusCode : " + httpStatus;
+        }
+    };
+    CustomerListComponent.prototype.removeCustomer = function (customer) {
+        var _this = this;
+        this._customerService.removeCustomer(customer).subscribe(function (s) { return _this.refreshCustomers(s); }, function (e) { return _this.errorMessage = e; });
     };
     return CustomerListComponent;
 }());
