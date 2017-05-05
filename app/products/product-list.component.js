@@ -11,7 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var product_service_1 = require("./product-service");
-var customers_service_1 = require("../customers/customers-service");
 var ProductListComponent = (function () {
     function ProductListComponent(_productService) {
         this._productService = _productService;
@@ -101,8 +100,8 @@ ProductListComponent = __decorate([
         templateUrl: "product-list.component.htm",
         styleUrls: ["product-list.component.css",
             "product-list.component1.css"],
-        styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"],
-        providers: [customers_service_1.CustomerService]
+        styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
+        //  ,providers : [CustomerService]
     }),
     __metadata("design:paramtypes", [product_service_1.ProductService])
 ], ProductListComponent);

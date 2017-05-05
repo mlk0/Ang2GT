@@ -10,6 +10,7 @@ var core_1 = require("@angular/core");
 var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/http");
+var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var product_list_component_1 = require("./products/product-list.component");
 var customers_list_component_1 = require("./customers/customers-list.component");
@@ -20,6 +21,9 @@ var customer_list_seniors_pipe_1 = require("./customers/customer-list-seniors.pi
 var customer_list_regulars_pipe_1 = require("./customers/customer-list-regulars.pipe");
 var item_count_component_1 = require("./item-count/item-count.component");
 var star_component_1 = require("./shared/star.component");
+var product_detail_component_1 = require("./products/product-detail.component");
+var welcome_component_1 = require("./home/welcome.component");
+var notfound_component_1 = require("./shared/NotFound/notfound.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -29,7 +33,17 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule,
             forms_1.FormsModule,
-            http_1.HttpModule
+            http_1.HttpModule,
+            router_1.RouterModule.forRoot([
+                { path: 'welcome', component: welcome_component_1.WelcomeComponent },
+                { path: 'products', component: product_list_component_1.ProductListComponent },
+                { path: 'product/:id', component: product_detail_component_1.ProductDetailComponent },
+                { path: "customers", component: customers_list_component_1.CustomerListComponent },
+                { path: 'vendors', component: vendor_list_component_1.VendorListComponent },
+                // { path: '', component: WelcomeComponent },
+                { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+                { path: '**', component: notfound_component_1.NotFoundComponent }
+            ])
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -41,7 +55,10 @@ AppModule = __decorate([
             customer_list_seniors_pipe_1.SeniorCustomersFilter,
             customer_list_regulars_pipe_1.RegularSubsribersFilter,
             item_count_component_1.ProductItemsComponent,
-            star_component_1.StarComponent
+            star_component_1.StarComponent,
+            welcome_component_1.WelcomeComponent,
+            product_detail_component_1.ProductDetailComponent,
+            notfound_component_1.NotFoundComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })

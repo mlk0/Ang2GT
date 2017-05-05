@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var product_service_1 = require("./products/product-service");
+var customers_service_1 = require("./customers/customers-service");
 var AppComponent = (function () {
     function AppComponent() {
         this.pageTitle = 'Acme Product Management';
@@ -17,10 +18,16 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'pm-app',
-        template: "<div>\n    <h1>{{pageTitle}}</h1>\n    my component\n    <pm-products>se ucitue</pm-products>\n    </div>"
+        templateUrl: 'app.component.htm',
+        // template: `<div>
+        // <h1>{{pageTitle}}</h1>
+        // my component
+        // <pm-products>se ucitue</pm-products>
+        // </div>`
         //templateUrl:"app/products/product-list.component.htm"
+        providers: [product_service_1.ProductService, customers_service_1.CustomerService] //CustomerService was intended to be used from the ProductListComponent but if it needs to be accessible through the menu, the service injection will need to be moved from the ProductServiceComponent to the appComponent
         ,
-        providers: [product_service_1.ProductService]
+        moduleId: module.id
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;

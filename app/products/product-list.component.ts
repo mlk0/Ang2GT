@@ -13,7 +13,7 @@ import { Observable } from "rxjs/Observable";
     ["product-list.component.css",
         "product-list.component1.css"],
     styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
-    ,providers : [CustomerService]
+  //  ,providers : [CustomerService]
 })
 export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
         errorMessage: any;
