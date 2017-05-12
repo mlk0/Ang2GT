@@ -18,6 +18,8 @@ import { StarComponent } from "./shared/star.component";
 import { ProductDetailComponent } from "./products/product-detail.component";
 import { WelcomeComponent } from "./home/welcome.component";
 import { NotFoundComponent } from "./shared/NotFound/notfound.component";
+import { ProductDetailsCanActivateGuardService } from "./products/product-guard-canactivate-service";
+import { ProductDetailCanDeactivateService } from "./products/product-detail-guard-candeactivate-service";
 
 @NgModule({
   imports: [BrowserModule
@@ -26,15 +28,18 @@ import { NotFoundComponent } from "./shared/NotFound/notfound.component";
     , RouterModule.forRoot([
       { path: 'welcome', component: WelcomeComponent },
       { path: 'products', component: ProductListComponent },
-      { path: 'product/:id', component: ProductDetailComponent },
+      { path: 'product/:id', component: ProductDetailComponent, 
+        canActivate : [ProductDetailsCanActivateGuardService],
+        canDeactivate : [ProductDetailCanDeactivateService] },
       { path: "customers", component: CustomerListComponent },
       { path: 'vendors', component: VendorListComponent },
       // { path: '', component: WelcomeComponent },
 
     { path: '', redirectTo : 'welcome', pathMatch:'full' },
-
+    {path:"notfound/:parameters",component:NotFoundComponent}, //i need this in order to be able to explicltly redirect
       { path: '**', component: NotFoundComponent }])
   ],
+  providers : [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
   declarations: [
     AppComponent
     , ProductListComponent

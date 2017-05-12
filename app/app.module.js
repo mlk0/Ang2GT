@@ -24,6 +24,8 @@ var star_component_1 = require("./shared/star.component");
 var product_detail_component_1 = require("./products/product-detail.component");
 var welcome_component_1 = require("./home/welcome.component");
 var notfound_component_1 = require("./shared/NotFound/notfound.component");
+var product_guard_canactivate_service_1 = require("./products/product-guard-canactivate-service");
+var product_detail_guard_candeactivate_service_1 = require("./products/product-detail-guard-candeactivate-service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -37,14 +39,18 @@ AppModule = __decorate([
             router_1.RouterModule.forRoot([
                 { path: 'welcome', component: welcome_component_1.WelcomeComponent },
                 { path: 'products', component: product_list_component_1.ProductListComponent },
-                { path: 'product/:id', component: product_detail_component_1.ProductDetailComponent },
+                { path: 'product/:id', component: product_detail_component_1.ProductDetailComponent,
+                    canActivate: [product_guard_canactivate_service_1.ProductDetailsCanActivateGuardService],
+                    canDeactivate: [product_detail_guard_candeactivate_service_1.ProductDetailCanDeactivateService] },
                 { path: "customers", component: customers_list_component_1.CustomerListComponent },
                 { path: 'vendors', component: vendor_list_component_1.VendorListComponent },
                 // { path: '', component: WelcomeComponent },
                 { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+                { path: "notfound/:parameters", component: notfound_component_1.NotFoundComponent },
                 { path: '**', component: notfound_component_1.NotFoundComponent }
             ])
         ],
+        providers: [product_guard_canactivate_service_1.ProductDetailsCanActivateGuardService, product_detail_guard_candeactivate_service_1.ProductDetailCanDeactivateService],
         declarations: [
             app_component_1.AppComponent,
             product_list_component_1.ProductListComponent,

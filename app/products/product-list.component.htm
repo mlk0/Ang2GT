@@ -103,7 +103,16 @@ Error : {{errorMessage}}
                             
                             *ngIf='showProductImages' (click)='doubleTheImageSizes()' (mouseout)='resetsizeTo50()'>
                         </td>
-                        <td>{{ product.productName }}</td>
+                        <td>
+                            <a [routerLink]="['/product',product.productId]"> {{ product.productName }}</a>
+                            
+                            
+                            <!--
+                                this is not working since the url that is produced is not conforming to 
+                                what is configured in the RouterModule.forRoute 
+                                <a [routerLink]="[ '/product',product ]" >{{product.productName}}</a>-->
+                           
+                           </td>
                         <td>{{ product.productCode | lowercase }}</td>
                         <td>{{ product.releaseDate | date:'yyyy-MM-dd'}}</td>
                         <td>{{ product.price | currency}}</td>
