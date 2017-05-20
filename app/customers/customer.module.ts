@@ -1,0 +1,31 @@
+
+import { NgModule } from "@angular/core";
+import { CustomerListComponent } from "./customers-list.component";
+import { RegularSubsribersFilter } from "./customer-list-regulars.pipe";
+import { SeniorCustomersFilter } from "./customer-list-seniors.pipe";
+import { TeenCustomersFilter } from "./customer-list-teens.pipe";
+import { FormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { VendorModule } from "../vendors/vendor.module";
+
+@NgModule({
+    declarations: [
+        CustomerListComponent,
+        RegularSubsribersFilter,
+        SeniorCustomersFilter,
+        TeenCustomersFilter
+    ],
+    exports: [CustomerListComponent]
+    , imports : [
+        FormsModule,
+        CommonModule,
+        RouterModule.forChild([
+             { path: "customers", component: CustomerListComponent }
+        ]),
+        VendorModule
+    ]
+})
+export class CustomerModule {
+
+}

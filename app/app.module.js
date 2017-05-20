@@ -13,12 +13,12 @@ var http_1 = require("@angular/http");
 var router_1 = require("@angular/router");
 var app_component_1 = require("./app.component");
 var product_list_component_1 = require("./products/product-list.component");
-var customers_list_component_1 = require("./customers/customers-list.component");
-var vendor_list_component_1 = require("./vendors/vendor-list.component");
 var product_list_pipe_1 = require("./products/product-list.pipe");
-var customer_list_teens_pipe_1 = require("./customers/customer-list-teens.pipe");
-var customer_list_seniors_pipe_1 = require("./customers/customer-list-seniors.pipe");
-var customer_list_regulars_pipe_1 = require("./customers/customer-list-regulars.pipe");
+//import { CustomerListComponent } from "./customers/customers-list.component";
+//import { TeenCustomersFilter } from "./customers/customer-list-teens.pipe";
+//import { SeniorCustomersFilter } from "./customers/customer-list-seniors.pipe";
+//import { RegularSubsribersFilter } from "./customers/customer-list-regulars.pipe";
+//import { VendorListComponent } from "./vendors/vendor-list.component";  - removed from here in order to be defined and exported in the vendors module
 var item_count_component_1 = require("./item-count/item-count.component");
 var star_component_1 = require("./shared/star.component");
 var product_detail_component_1 = require("./products/product-detail.component");
@@ -26,6 +26,8 @@ var welcome_component_1 = require("./home/welcome.component");
 var notfound_component_1 = require("./shared/NotFound/notfound.component");
 var product_guard_canactivate_service_1 = require("./products/product-guard-canactivate-service");
 var product_detail_guard_candeactivate_service_1 = require("./products/product-detail-guard-candeactivate-service");
+var vendor_module_1 = require("./vendors/vendor.module");
+var customer_module_1 = require("./customers/customer.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -39,27 +41,33 @@ AppModule = __decorate([
             router_1.RouterModule.forRoot([
                 { path: 'welcome', component: welcome_component_1.WelcomeComponent },
                 { path: 'products', component: product_list_component_1.ProductListComponent },
-                { path: 'product/:id', component: product_detail_component_1.ProductDetailComponent,
+                {
+                    path: 'product/:id', component: product_detail_component_1.ProductDetailComponent,
                     canActivate: [product_guard_canactivate_service_1.ProductDetailsCanActivateGuardService],
-                    canDeactivate: [product_detail_guard_candeactivate_service_1.ProductDetailCanDeactivateService] },
-                { path: "customers", component: customers_list_component_1.CustomerListComponent },
-                { path: 'vendors', component: vendor_list_component_1.VendorListComponent },
+                    canDeactivate: [product_detail_guard_candeactivate_service_1.ProductDetailCanDeactivateService]
+                },
+                // { path: "customers", component: CustomerListComponent },
+                // { path: 'vendors', component: VendorListComponent },  this route is commented here since it's moved in the vendor's module
                 // { path: '', component: WelcomeComponent },
                 { path: '', redirectTo: 'welcome', pathMatch: 'full' },
                 { path: "notfound/:parameters", component: notfound_component_1.NotFoundComponent },
                 { path: '**', component: notfound_component_1.NotFoundComponent }
-            ])
+            ]),
+            vendor_module_1.VendorModule,
+            customer_module_1.CustomerModule
         ],
         providers: [product_guard_canactivate_service_1.ProductDetailsCanActivateGuardService, product_detail_guard_candeactivate_service_1.ProductDetailCanDeactivateService],
         declarations: [
             app_component_1.AppComponent,
-            product_list_component_1.ProductListComponent,
-            customers_list_component_1.CustomerListComponent,
-            vendor_list_component_1.VendorListComponent,
-            product_list_pipe_1.ProductListFilter,
-            customer_list_teens_pipe_1.TeenCustomersFilter,
-            customer_list_seniors_pipe_1.SeniorCustomersFilter,
-            customer_list_regulars_pipe_1.RegularSubsribersFilter,
+            product_list_component_1.ProductListComponent
+            //, VendorListComponent  - removed from declarations in the app.module and moved to vendor.module 
+            ,
+            product_list_pipe_1.ProductListFilter
+            //, CustomerListComponent
+            // , TeenCustomersFilter
+            // , SeniorCustomersFilter
+            // , RegularSubsribersFilter
+            ,
             item_count_component_1.ProductItemsComponent,
             star_component_1.StarComponent,
             welcome_component_1.WelcomeComponent,

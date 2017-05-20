@@ -2,7 +2,7 @@
 import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 import { ICustomer, Customer } from "./customer";
 import { CustomerService } from "./customers-service";
-
+//import { VendorListComponent } from "../vendors/vendor-list.component";
 
 @Component({
     selector: "pm-customers"

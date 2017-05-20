@@ -24,6 +24,7 @@
                         <td>Name</td>
 
                         <td>City</td>
+                        <td>Phone</td>
                     </tr>
                 </th>
             </thead>
@@ -33,9 +34,17 @@
 
                 <tr *ngFor='let vendor of vendors'>
 
-                    <td>{{vendor.name}}</td>
+                    <td> {{vendor.name}}</td>
 
                     <td>{{vendor.city}}</td>
+                    <td>
+                        
+                        <input type="text" [(ngModel)]='vendor.name'  />
+                        <input type="checkbox" [(ngModel)]='vendor.isActive'/>
+                        {{vendor.isActive}}
+
+                        
+                    </td>
                     </tr>
             </tbody>
         </table>

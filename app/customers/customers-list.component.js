@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var customer_1 = require("./customer");
 var customers_service_1 = require("./customers-service");
+//import { VendorListComponent } from "../vendors/vendor-list.component";
 var CustomerListComponent = (function () {
     function CustomerListComponent(_customerService) {
         this._customerService = _customerService;

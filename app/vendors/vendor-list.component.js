@@ -12,8 +12,9 @@ var VendorListComponent = (function () {
         this.title = "Hello, made up by these 2 people: LARA & MIRKO";
         this.borderWidth = 5;
         this.vendors = [
-            { name: "Acme Sales", city: "Skopje" },
-            { name: "Best Product", city: "Toronto" }
+            { name: "Acme Sales", city: "Skopje", isActive: true },
+            { name: "Best Product", city: "Toronto", isActive: false },
+            { name: "Turi Vadi", city: "Sviripicino", isActive: true }
         ];
     }
     VendorListComponent.prototype.ngOnDestroy = function () {
