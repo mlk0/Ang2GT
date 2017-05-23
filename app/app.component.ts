@@ -1,5 +1,5 @@
 import {Component} from "@angular/core"
-import { ProductListComponent } from "./products/product-list.component";
+//import { ProductListComponent } from "./products/product-list.component";
 import { ProductService } from "./products/product-service";
 import { CustomerService } from "./customers/customers-service";
 

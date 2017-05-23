@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+//import { ProductListComponent } from "./products/product-list.component";
 var product_service_1 = require("./products/product-service");
 var customers_service_1 = require("./customers/customers-service");
 var AppComponent = (function () {
