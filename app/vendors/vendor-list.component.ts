@@ -26,7 +26,6 @@ export class VendorListComponent implements OnInit, OnChanges, OnDestroy {
     title: string = "Hello, made up by these 2 people: LARA & MIRKO";
 
     borderWidth: Number = 5;
-    
     vendors: IVendor[] = [
 
         { name: "Acme Sales", city: "Skopje", isActive: true },

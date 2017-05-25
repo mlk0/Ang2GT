@@ -5,7 +5,6 @@
     
     <base href="/">
     
-    
     <title>Acme Product Management</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,10 +13,17 @@
     <link href="app/app.component.css" rel="stylesheet" />
 
     <!-- Polyfill(s) for older browsers -->
+    <!--core-js is bringing ES2015 capabilities into es5 browsers and is introduced through typings.json -->
     <script src="node_modules/core-js/client/shim.min.js"></script>
     
+    <!--zone.js is providing execution context accross asynchronous calls and is used by
+    Angular2 to detect changes and databinding -->
     <script src="node_modules/zone.js/dist/zone.js"></script>
+
+    <!--reflect-metadata/Reflect.js is used to read typescript decorator metadata -->
     <script src="node_modules/reflect-metadata/Reflect.js"></script>
+
+    <!-- systemjs is the module loader used, it's configured in systemjs.config.json -->
     <script src="node_modules/systemjs/dist/system.src.js"></script>
 
     <!-- Configure SystemJS -->

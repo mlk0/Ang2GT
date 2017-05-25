@@ -24,7 +24,7 @@ SharedModule = __decorate([
             router_1.RouterModule.forChild([
                 { path: 'welcome', component: welcome_component_1.WelcomeComponent },
                 { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                { path: "notfound/:parameters", component: notfound_component_1.NotFoundComponent },
+                { path: 'notfound/:parameters', component: notfound_component_1.NotFoundComponent },
                 { path: '**', component: notfound_component_1.NotFoundComponent }
             ])
         ],

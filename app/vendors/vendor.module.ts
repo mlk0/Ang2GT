@@ -1,8 +1,8 @@
-import { NgModule } from "@angular/core";
-import { VendorListComponent } from "./vendor-list.component";
-import { FormsModule } from "@angular/forms";
-import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { VendorListComponent } from './vendor-list.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations : [ VendorListComponent ],
@@ -20,6 +20,6 @@ import { RouterModule } from "@angular/router";
          when used from within the customers-list.component.htm*/
          ]
 })
-export class VendorModule{
+export class VendorModule {
 
 }
