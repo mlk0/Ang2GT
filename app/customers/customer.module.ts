@@ -8,6 +8,7 @@ import { FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { VendorModule } from "../vendors/vendor.module";
+import { customerRoutes } from "./customre.routes";
 
 @NgModule({
     declarations: [
@@ -20,9 +21,12 @@ import { VendorModule } from "../vendors/vendor.module";
     , imports : [
         FormsModule,
         CommonModule,
-        RouterModule.forChild([
-             { path: "customers", component: CustomerListComponent }
-        ]),
+        RouterModule.forChild(
+            // [
+            //  { path: "customers", component: CustomerListComponent }
+            // ]
+            customerRoutes
+            ),
         VendorModule
     ]
 })

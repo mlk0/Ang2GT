@@ -15,6 +15,7 @@ var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var vendor_module_1 = require("../vendors/vendor.module");
+var customre_routes_1 = require("./customre.routes");
 var CustomerModule = (function () {
     function CustomerModule() {
     }
@@ -32,9 +33,11 @@ CustomerModule = __decorate([
         imports: [
             forms_1.FormsModule,
             common_1.CommonModule,
-            router_1.RouterModule.forChild([
-                { path: "customers", component: customers_list_component_1.CustomerListComponent }
-            ]),
+            router_1.RouterModule.forChild(
+            // [
+            //  { path: "customers", component: CustomerListComponent }
+            // ]
+            customre_routes_1.customerRoutes),
             vendor_module_1.VendorModule
         ]
     })

@@ -4,6 +4,7 @@ import { IItemCount } from "../item-count/itemCount";
 import { ProductService } from "./product-service";
 import { CustomerService } from "../customers/customers-service";
 import { Observable } from "rxjs/Observable";
+import { ToastrService } from "../shared/toastr.service";
 
 @Component({
     selector: 'pm-products',
@@ -49,7 +50,7 @@ export class ProductListComponent implements OnInit, OnChanges, OnDestroy {
     
     productFilter: string = "";
 
-    constructor(private _productService : ProductService){
+    constructor(private _productService : ProductService, private _toastrService : ToastrService){
         this.productQuantityUpdate();
     }
    
@@ -86,7 +87,13 @@ productItemQuantityChanged(itemCount:IItemCount)
 
     var updatedProductIndex = this.products.findIndex((p:IProduct)=>p.productId == itemCount.ItemId);
     if(updatedProductIndex != -1){
+      
         var updatedProduct = this.products[updatedProductIndex];
+
+        var oldQuantity = updatedProduct.quantity;
+        var newQuantity = itemCount.ItemQuantity;
+        this._toastrService.success('oldQuantity : '+ oldQuantity + 'newQuantity : ' + newQuantity);
+
         if(updatedProduct){
             updatedProduct.quantity = itemCount.ItemQuantity;
         }

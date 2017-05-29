@@ -12,36 +12,40 @@ import { ProductListFilter } from "./product-list.pipe";
 import { CustomerModule } from "../customers/customer.module";
 import { SharedModule } from "../shared/shared.module";
 import { VendorModule } from "../vendors/vendor.module";
+import { productRoutes } from "./product.routes";
 //import { StarComponent } from "../shared/star.component";
 
 @NgModule({
-    imports : [FormsModule, CommonModule
-        ,CustomerModule
-      //  ,VendorModule
-      //  ,SharedModule
+    imports: [FormsModule, CommonModule
+        , CustomerModule
+        //  ,VendorModule
+        //  ,SharedModule
         //,StarComponent
-        ,RouterModule.forChild([
-                { path: 'products', component: ProductListComponent },
-                {
-                    path: 'product/:id', component: ProductDetailComponent,
-                    canActivate: [ProductDetailsCanActivateGuardService],
-                    canDeactivate: [ProductDetailCanDeactivateService]
-                },   
+        , RouterModule.forChild(
+            // [
+            //     { path: 'products', component: ProductListComponent },
+            //     {
+            //         path: 'product/:id', component: ProductDetailComponent,
+            //         canActivate: [ProductDetailsCanActivateGuardService],
+            //         canDeactivate: [ProductDetailCanDeactivateService]
+            //     }
+            // ]
 
-        ])
-        
-        
+            productRoutes
+        )
+
+
     ],
     //exports : [SharedModule,CustomerModule],
     providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
-    declarations : [
+    declarations: [
         ProductListComponent,
         ProductDetailComponent,
         ProductItemsComponent,
         ProductListFilter
-        
+
     ]
 })
-export class ProductModule{
+export class ProductModule {
 
 }

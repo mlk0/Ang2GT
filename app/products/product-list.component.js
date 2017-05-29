@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var product_service_1 = require("./product-service");
+var toastr_service_1 = require("../shared/toastr.service");
 var ProductListComponent = (function () {
-    function ProductListComponent(_productService) {
+    function ProductListComponent(_productService, _toastrService) {
         this._productService = _productService;
+        this._toastrService = _toastrService;
         this.pageTitle = "Product List Component";
         this.imageHeight = 50;
         this.imageWidth = 50;
@@ -71,6 +73,9 @@ var ProductListComponent = (function () {
         var updatedProductIndex = this.products.findIndex(function (p) { return p.productId == itemCount.ItemId; });
         if (updatedProductIndex != -1) {
             var updatedProduct = this.products[updatedProductIndex];
+            var oldQuantity = updatedProduct.quantity;
+            var newQuantity = itemCount.ItemQuantity;
+            this._toastrService.success('oldQuantity : ' + oldQuantity + 'newQuantity : ' + newQuantity);
             if (updatedProduct) {
                 updatedProduct.quantity = itemCount.ItemQuantity;
             }
@@ -103,7 +108,7 @@ ProductListComponent = __decorate([
         styles: [".oliveDashed {border-color:cadetblue;border-style: dashed;border-width: 10px}"]
         //  ,providers : [CustomerService]
     }),
-    __metadata("design:paramtypes", [product_service_1.ProductService])
+    __metadata("design:paramtypes", [product_service_1.ProductService, toastr_service_1.ToastrService])
 ], ProductListComponent);
 exports.ProductListComponent = ProductListComponent;
 //# sourceMappingURL=product-list.component.js.map

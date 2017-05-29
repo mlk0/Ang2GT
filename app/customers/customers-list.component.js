@@ -12,10 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var customer_1 = require("./customer");
 var customers_service_1 = require("./customers-service");
+var toastr_service_1 = require("../shared/toastr.service");
 //import { VendorListComponent } from "../vendors/vendor-list.component";
 var CustomerListComponent = (function () {
-    function CustomerListComponent(_customerService) {
+    function CustomerListComponent(_customerService, _toastrService) {
         this._customerService = _customerService;
+        this._toastrService = _toastrService;
         this.componentTitle = "List of Customers";
         this.customers = null;
         this.showCustomers = false;
@@ -43,22 +45,26 @@ var CustomerListComponent = (function () {
     };
     CustomerListComponent.prototype.addNewCustomer = function () {
         var _this = this;
+        this._toastrService.info('Adding new customer : ' + this.newCustomer.name);
         var httpStatusCode = this._customerService.addCustomer(this.newCustomer)
-            .subscribe(function (s) { return _this.refreshCustomers(s); }, function (e) { return _this.errorMessage = e; });
+            .subscribe(function (s) { return _this.refreshCustomers(s, _this.newCustomer); }, function (e) { return _this.errorMessage = e; });
     };
-    CustomerListComponent.prototype.refreshCustomers = function (httpStatus) {
+    CustomerListComponent.prototype.refreshCustomers = function (httpStatus, customer) {
         if (httpStatus == 200) {
             this.errorMessage = "Success";
+            this._toastrService.success('Success [' + customer.name + ']');
             this.getCustomers();
             this.newCustomer = new customer_1.Customer("", 0);
         }
         else {
             this.errorMessage = "Failed adding or removing customer - httpStatusCode : " + httpStatus;
+            this._toastrService.error('Failed adding or removing customer');
         }
     };
     CustomerListComponent.prototype.removeCustomer = function (customer) {
         var _this = this;
-        this._customerService.removeCustomer(customer).subscribe(function (s) { return _this.refreshCustomers(s); }, function (e) { return _this.errorMessage = e; });
+        this._toastrService.info('Removing existing customer : ' + customer.name);
+        this._customerService.removeCustomer(customer).subscribe(function (s) { return _this.refreshCustomers(s, customer); }, function (e) { return _this.errorMessage = e; });
     };
     return CustomerListComponent;
 }());
@@ -70,7 +76,7 @@ CustomerListComponent = __decorate([
         styleUrls: ["customers-list.component.css"],
         moduleId: module.id
     }),
-    __metadata("design:paramtypes", [customers_service_1.CustomerService])
+    __metadata("design:paramtypes", [customers_service_1.CustomerService, toastr_service_1.ToastrService])
 ], CustomerListComponent);
 exports.CustomerListComponent = CustomerListComponent;
 //# sourceMappingURL=customers-list.component.js.map

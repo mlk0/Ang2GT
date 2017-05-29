@@ -2,6 +2,7 @@
 import { Component, OnInit, OnChanges, OnDestroy, SimpleChanges } from "@angular/core";
 import { ICustomer, Customer } from "./customer";
 import { CustomerService } from "./customers-service";
+import { ToastrService } from "../shared/toastr.service";
 //import { VendorListComponent } from "../vendors/vendor-list.component";
 
 @Component({
@@ -47,7 +48,7 @@ export class CustomerListComponent implements OnInit, OnChanges, OnDestroy {
 
     }
 
-    constructor(private _customerService: CustomerService) {
+    constructor(private _customerService: CustomerService, private _toastrService: ToastrService) {
         this.newCustomer = new Customer("", 0);
     }
     getCustomers() {
@@ -56,25 +57,38 @@ export class CustomerListComponent implements OnInit, OnChanges, OnDestroy {
     }
     addNewCustomer() {
 
+
+        this._toastrService.info('Adding new customer : ' + this.newCustomer.name);
+
         var httpStatusCode = this._customerService.addCustomer(this.newCustomer)
-            .subscribe(s => this.refreshCustomers(s), e => this.errorMessage = <any>e);
+            .subscribe(s => this.refreshCustomers(s, this.newCustomer), e => this.errorMessage = <any>e);
+
+
 
 
     }
 
-    refreshCustomers(httpStatus: number) {
+    refreshCustomers(httpStatus: number, customer : Customer) {
         if (httpStatus == 200) {
             this.errorMessage = "Success";
+
+            this._toastrService.success('Success ['+customer.name+']');
+
             this.getCustomers();
             this.newCustomer = new Customer("", 0);
         }
         else {
             this.errorMessage = "Failed adding or removing customer - httpStatusCode : " + httpStatus;
+
+            this._toastrService.error('Failed adding or removing customer');
         }
     }
 
     removeCustomer(customer: Customer) {
-        this._customerService.removeCustomer(customer).subscribe(s => this.refreshCustomers(s), e => this.errorMessage = <any>e);
+
+        this._toastrService.info('Removing existing customer : ' + customer.name);
+
+        this._customerService.removeCustomer(customer).subscribe(s => this.refreshCustomers(s, customer), e => this.errorMessage = <any>e);
     }
 
 

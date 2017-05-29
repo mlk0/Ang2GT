@@ -13,6 +13,8 @@ var router_1 = require("@angular/router");
 var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
 var welcome_component_1 = require("../home/welcome.component");
+var toastr_service_1 = require("./toastr.service");
+var shared_routes_1 = require("./shared.routes");
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -21,19 +23,22 @@ var SharedModule = (function () {
 SharedModule = __decorate([
     core_1.NgModule({
         imports: [forms_1.FormsModule, common_1.CommonModule,
-            router_1.RouterModule.forChild([
-                { path: 'welcome', component: welcome_component_1.WelcomeComponent },
-                { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-                { path: 'notfound/:parameters', component: notfound_component_1.NotFoundComponent },
-                { path: '**', component: notfound_component_1.NotFoundComponent }
-            ])
+            router_1.RouterModule.forChild(
+            // [
+            //     { path: 'welcome', component: WelcomeComponent },
+            //     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+            //     { path: 'notfound/:parameters', component: NotFoundComponent }, //i need this in order to be able to explicltly redirect
+            //     { path: '**', component: NotFoundComponent }
+            // ]
+            shared_routes_1.sharedRoutes)
         ],
         //exports : [StarComponent,NotFoundComponent],
         declarations: [
             star_component_1.StarComponent,
             notfound_component_1.NotFoundComponent,
             welcome_component_1.WelcomeComponent
-        ]
+        ],
+        providers: [toastr_service_1.ToastrService]
     })
 ], SharedModule);
 exports.SharedModule = SharedModule;
