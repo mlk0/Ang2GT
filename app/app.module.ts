@@ -29,13 +29,14 @@ import { AppComponent } from './app.component';
 
 //import { WelcomeComponent } from "./home/welcome.component";
 
-import { VendorModule } from "./vendors/vendor.module";
-import { CustomerModule } from "./customers/customer.module";
-import { SharedModule } from "./shared/shared.module";
-import { ProductModule } from "./products/product.module";
- import { WarehouseModule } from "./warehouse/warehouse.module";
+//import { VendorModule } from "./vendors/vendor.module";
+// import { CustomerModule } from "./customers/customer.module";
+//import { SharedModule } from "./shared/shared.module";
+//import { ProductModule } from "./products/product.module";
+// import { WarehouseModule } from "./warehouse/warehouse.module";
 //import { WarehouseComponent } from "./warehouse/warehouse.component";
 import { NotFoundComponent } from "./shared/NotFound/notfound.component";
+import { SharedModule } from "./shared/shared.module";
 
 
 
@@ -47,7 +48,7 @@ import { NotFoundComponent } from "./shared/NotFound/notfound.component";
     , FormsModule
     , HttpModule
 
-   //    , WarehouseModule 
+    //    , WarehouseModule 
     // , WarehouseComponent
 
     , RouterModule.forRoot([
@@ -67,22 +68,25 @@ import { NotFoundComponent } from "./shared/NotFound/notfound.component";
       //{ path: '**', component: NotFoundComponent }
 
 
-       {path : 'prd', loadChildren : 'app/products/product.module#ProductModule'},
-       {path:'warehouse', loadChildren : 'app/warehouse/warehouse.module#WarehouseModule'}
-      , { path: '**', component: NotFoundComponent }
+      { path: 'prd', loadChildren: 'app/products/product.module#ProductModule' },
+      { path: 'warehouse', loadChildren: 'app/warehouse/warehouse.module#WarehouseModule' },
+      { path: 'vnd', loadChildren: 'app/vendors/vendor.module#VendorModule' },
+      { path: 'crm', loadChildren : 'app/customers/customer.module#CustomerModule'},
+      //{ path: 'shared', loadChildren : 'app/shared/shared.module#SharedModule'}
+      { path: '**', component: NotFoundComponent }
     ])
 
-  //  , ProductModule
+    //  , ProductModule
 
-    , VendorModule
-    , CustomerModule
-    , SharedModule
+    //  , VendorModule
+    //, CustomerModule
+   , SharedModule
 
   ],
   //providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
   declarations: [
     AppComponent
-   // , WarehouseComponent
+    // , WarehouseComponent
     //, VendorListComponent  - removed from declarations in the app.module and moved to vendor.module 
 
 

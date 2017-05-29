@@ -15,7 +15,7 @@ import { CustomerService } from "./customers/customers-service";
     //templateUrl:"app/products/product-list.component.htm"
     providers:[
         //ProductService, 
-        CustomerService
+        //CustomerService
     //,ProductListCanResolveGuard
     ] //CustomerService was intended to be used from the ProductListComponent but if it needs to be accessible through the menu, the service injection will need to be moved from the ProductServiceComponent to the appComponent
     ,moduleId : module.id

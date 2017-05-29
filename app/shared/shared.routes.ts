@@ -6,7 +6,7 @@ export const sharedRoutes: Routes = [
 
     { path: 'welcome', component: WelcomeComponent },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    { path: 'notfound/:parameters', component: NotFoundComponent }, //i need this in order to be able to explicltly redirect
+    { path: 'notfound/:parameters', component: NotFoundComponent } //i need this in order to be able to explicltly redirect
     //{ path: '**', component: NotFoundComponent }
 
 ];

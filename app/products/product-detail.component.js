@@ -25,7 +25,7 @@ var ProductDetailComponent = (function () {
         this.productId = selectedProductId;
     };
     ProductDetailComponent.prototype.onBack = function () {
-        this._router.navigate(['/products']);
+        this._router.navigate(['/prd/products']);
     };
     return ProductDetailComponent;
 }());

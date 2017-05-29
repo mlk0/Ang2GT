@@ -7,9 +7,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-//import { ProductListComponent } from "./products/product-list.component";
-//import { ProductService } from "./products/product-service";
-var customers_service_1 = require("./customers/customers-service");
 //import { ProductListCanResolveGuard } from "./products/product-list-guard-canresolve.service";
 var AppComponent = (function () {
     function AppComponent() {
@@ -27,11 +24,7 @@ AppComponent = __decorate([
         // <pm-products>se ucitue</pm-products>
         // </div>`
         //templateUrl:"app/products/product-list.component.htm"
-        providers: [
-            //ProductService, 
-            customers_service_1.CustomerService
-            //,ProductListCanResolveGuard
-        ] //CustomerService was intended to be used from the ProductListComponent but if it needs to be accessible through the menu, the service injection will need to be moved from the ProductServiceComponent to the appComponent
+        providers: [] //CustomerService was intended to be used from the ProductListComponent but if it needs to be accessible through the menu, the service injection will need to be moved from the ProductServiceComponent to the appComponent
         ,
         moduleId: module.id
     })

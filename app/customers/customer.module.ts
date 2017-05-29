@@ -9,6 +9,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { VendorModule } from "../vendors/vendor.module";
 import { customerRoutes } from "./customre.routes";
+import { CustomerService } from "./customers-service";
 
 @NgModule({
     declarations: [
@@ -29,6 +30,8 @@ import { customerRoutes } from "./customre.routes";
             ),
         VendorModule
     ]
+    , providers : [CustomerService]
+    
 })
 export class CustomerModule {
 

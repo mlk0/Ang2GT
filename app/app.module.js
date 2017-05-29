@@ -29,11 +29,14 @@ var app_component_1 = require("./app.component");
 //import { StarComponent } from "./shared/star.component";
 //import { NotFoundComponent } from "./shared/NotFound/notfound.component";
 //import { WelcomeComponent } from "./home/welcome.component";
-var vendor_module_1 = require("./vendors/vendor.module");
-var customer_module_1 = require("./customers/customer.module");
-var shared_module_1 = require("./shared/shared.module");
+//import { VendorModule } from "./vendors/vendor.module";
+// import { CustomerModule } from "./customers/customer.module";
+//import { SharedModule } from "./shared/shared.module";
+//import { ProductModule } from "./products/product.module";
+// import { WarehouseModule } from "./warehouse/warehouse.module";
 //import { WarehouseComponent } from "./warehouse/warehouse.component";
 var notfound_component_1 = require("./shared/NotFound/notfound.component");
+var shared_module_1 = require("./shared/shared.module");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -63,12 +66,15 @@ AppModule = __decorate([
                 //{ path: '**', component: NotFoundComponent }
                 { path: 'prd', loadChildren: 'app/products/product.module#ProductModule' },
                 { path: 'warehouse', loadChildren: 'app/warehouse/warehouse.module#WarehouseModule' },
+                { path: 'vnd', loadChildren: 'app/vendors/vendor.module#VendorModule' },
+                { path: 'crm', loadChildren: 'app/customers/customer.module#CustomerModule' },
+                //{ path: 'shared', loadChildren : 'app/shared/shared.module#SharedModule'}
                 { path: '**', component: notfound_component_1.NotFoundComponent }
             ])
             //  , ProductModule
+            //  , VendorModule
+            //, CustomerModule
             ,
-            vendor_module_1.VendorModule,
-            customer_module_1.CustomerModule,
             shared_module_1.SharedModule
         ],
         //providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],

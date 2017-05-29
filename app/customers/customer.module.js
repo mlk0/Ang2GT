@@ -16,6 +16,7 @@ var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
 var vendor_module_1 = require("../vendors/vendor.module");
 var customre_routes_1 = require("./customre.routes");
+var customers_service_1 = require("./customers-service");
 var CustomerModule = (function () {
     function CustomerModule() {
     }
@@ -39,7 +40,8 @@ CustomerModule = __decorate([
             // ]
             customre_routes_1.customerRoutes),
             vendor_module_1.VendorModule
-        ]
+        ],
+        providers: [customers_service_1.CustomerService]
     })
 ], CustomerModule);
 exports.CustomerModule = CustomerModule;

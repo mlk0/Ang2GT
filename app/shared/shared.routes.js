@@ -5,6 +5,7 @@ var notfound_component_1 = require("./NotFound/notfound.component");
 exports.sharedRoutes = [
     { path: 'welcome', component: welcome_component_1.WelcomeComponent },
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-    { path: 'notfound/:parameters', component: notfound_component_1.NotFoundComponent },
+    { path: 'notfound/:parameters', component: notfound_component_1.NotFoundComponent } //i need this in order to be able to explicltly redirect
+    //{ path: '**', component: NotFoundComponent }
 ];
 //# sourceMappingURL=shared.routes.js.map
