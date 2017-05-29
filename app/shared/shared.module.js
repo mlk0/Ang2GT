@@ -32,7 +32,7 @@ SharedModule = __decorate([
             // ]
             shared_routes_1.sharedRoutes)
         ],
-        //exports : [StarComponent,NotFoundComponent],
+        exports: [notfound_component_1.NotFoundComponent],
         declarations: [
             star_component_1.StarComponent,
             notfound_component_1.NotFoundComponent,

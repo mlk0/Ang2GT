@@ -32,7 +32,8 @@ var app_component_1 = require("./app.component");
 var vendor_module_1 = require("./vendors/vendor.module");
 var customer_module_1 = require("./customers/customer.module");
 var shared_module_1 = require("./shared/shared.module");
-var product_module_1 = require("./products/product.module");
+//import { WarehouseComponent } from "./warehouse/warehouse.component";
+var notfound_component_1 = require("./shared/NotFound/notfound.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -42,16 +43,38 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule,
             forms_1.FormsModule,
-            http_1.HttpModule,
-            product_module_1.ProductModule,
+            http_1.HttpModule
+            //    , WarehouseModule 
+            // , WarehouseComponent
+            ,
+            router_1.RouterModule.forRoot([
+                //  { path: 'welcome', component: WelcomeComponent },
+                // { path: 'products', component: ProductListComponent },
+                // {
+                //   path: 'product/:id', component: ProductDetailComponent,
+                //   canActivate: [ProductDetailsCanActivateGuardService],
+                //   canDeactivate: [ProductDetailCanDeactivateService]
+                // },
+                // { path: "customers", component: CustomerListComponent },
+                // { path: 'vendors', component: VendorListComponent },  this route is commented here since it's moved in the vendor's module
+                // { path: '', component: WelcomeComponent },
+                //{ path: '', redirectTo: 'welcome', pathMatch: 'full' }
+                // { path: "notfound/:parameters", component: NotFoundComponent }, //i need this in order to be able to explicltly redirect
+                //{ path: '**', component: NotFoundComponent }
+                { path: 'prd', loadChildren: 'app/products/product.module#ProductModule' },
+                { path: 'warehouse', loadChildren: 'app/warehouse/warehouse.module#WarehouseModule' },
+                { path: '**', component: notfound_component_1.NotFoundComponent }
+            ])
+            //  , ProductModule
+            ,
             vendor_module_1.VendorModule,
             customer_module_1.CustomerModule,
-            shared_module_1.SharedModule,
-            router_1.RouterModule.forRoot([])
+            shared_module_1.SharedModule
         ],
         //providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
         declarations: [
             app_component_1.AppComponent
+            // , WarehouseComponent
             //, VendorListComponent  - removed from declarations in the app.module and moved to vendor.module 
             //, CustomerListComponent
             // , TeenCustomersFilter

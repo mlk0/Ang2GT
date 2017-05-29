@@ -22,10 +22,15 @@ var ProductService = (function () {
     ProductService.prototype.getProducts = function () {
         var _this = this;
         console.log("this._productsUrl : " + this._productsUrl);
+        setTimeout(function () {
+        }, 3000);
         return this._http.get(this._productsUrl)
             .do(function (data) { return console.log("products response : " + JSON.stringify(data)); })
             .catch(this.handleError)
-            .map(function (r) { return _this.castProductList(r); });
+            .map(function (response) {
+            console.log('ProductService.getProducts() in map');
+            return _this.castProductList(response);
+        });
     };
     ProductService.prototype.castProductList = function (response) {
         console.log("in castProductList");

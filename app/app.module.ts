@@ -33,6 +33,9 @@ import { VendorModule } from "./vendors/vendor.module";
 import { CustomerModule } from "./customers/customer.module";
 import { SharedModule } from "./shared/shared.module";
 import { ProductModule } from "./products/product.module";
+ import { WarehouseModule } from "./warehouse/warehouse.module";
+//import { WarehouseComponent } from "./warehouse/warehouse.component";
+import { NotFoundComponent } from "./shared/NotFound/notfound.component";
 
 
 
@@ -43,55 +46,62 @@ import { ProductModule } from "./products/product.module";
   imports: [BrowserModule
     , FormsModule
     , HttpModule
-   ,ProductModule
 
-      ,VendorModule
-      ,CustomerModule
-      ,SharedModule
-       
-      
+   //    , WarehouseModule 
+    // , WarehouseComponent
+
     , RouterModule.forRoot([
-    //  { path: 'welcome', component: WelcomeComponent },
+      //  { path: 'welcome', component: WelcomeComponent },
       // { path: 'products', component: ProductListComponent },
       // {
       //   path: 'product/:id', component: ProductDetailComponent,
       //   canActivate: [ProductDetailsCanActivateGuardService],
       //   canDeactivate: [ProductDetailCanDeactivateService]
       // },
-     // { path: "customers", component: CustomerListComponent },
+      // { path: "customers", component: CustomerListComponent },
       // { path: 'vendors', component: VendorListComponent },  this route is commented here since it's moved in the vendor's module
       // { path: '', component: WelcomeComponent },
 
       //{ path: '', redirectTo: 'welcome', pathMatch: 'full' }
       // { path: "notfound/:parameters", component: NotFoundComponent }, //i need this in order to be able to explicltly redirect
       //{ path: '**', component: NotFoundComponent }
-      ])
-      
-      
+
+
+       {path : 'prd', loadChildren : 'app/products/product.module#ProductModule'},
+       {path:'warehouse', loadChildren : 'app/warehouse/warehouse.module#WarehouseModule'}
+      , { path: '**', component: NotFoundComponent }
+    ])
+
+  //  , ProductModule
+
+    , VendorModule
+    , CustomerModule
+    , SharedModule
+
   ],
   //providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
   declarations: [
     AppComponent
-   
+   // , WarehouseComponent
     //, VendorListComponent  - removed from declarations in the app.module and moved to vendor.module 
-   
-    
+
+
     //, CustomerListComponent
     // , TeenCustomersFilter
     // , SeniorCustomersFilter
     // , RegularSubsribersFilter
-   
-   //moved to the product module
-   // , ProductListComponent , ProductListFilter, ProductItemsComponent, , ProductDetailComponent
-    
-   
-   // , WelcomeComponent
 
-  //  , StarComponent
+    //moved to the product module
+    // , ProductListComponent , ProductListFilter, ProductItemsComponent, , ProductDetailComponent
+
+
+    // , WelcomeComponent
+
+    //  , StarComponent
     // , NotFoundComponent
   ],
 
   bootstrap: [AppComponent]
-  
+
 })
 export class AppModule { }

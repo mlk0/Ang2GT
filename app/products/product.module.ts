@@ -13,6 +13,8 @@ import { CustomerModule } from "../customers/customer.module";
 import { SharedModule } from "../shared/shared.module";
 import { VendorModule } from "../vendors/vendor.module";
 import { productRoutes } from "./product.routes";
+import { ProductListCanResolveGuard } from "./product-list-guard-canresolve.service";
+import { ProductService } from "./product-service";
 //import { StarComponent } from "../shared/star.component";
 
 @NgModule({
@@ -37,7 +39,12 @@ import { productRoutes } from "./product.routes";
 
     ],
     //exports : [SharedModule,CustomerModule],
-    providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
+    providers: [
+        ProductService,
+        ProductDetailsCanActivateGuardService, 
+        ProductDetailCanDeactivateService
+        ,ProductListCanResolveGuard
+        ],
     declarations: [
         ProductListComponent,
         ProductDetailComponent,

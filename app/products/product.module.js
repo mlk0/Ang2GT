@@ -18,6 +18,8 @@ var item_count_component_1 = require("../item-count/item-count.component");
 var product_list_pipe_1 = require("./product-list.pipe");
 var customer_module_1 = require("../customers/customer.module");
 var product_routes_1 = require("./product.routes");
+var product_list_guard_canresolve_service_1 = require("./product-list-guard-canresolve.service");
+var product_service_1 = require("./product-service");
 //import { StarComponent } from "../shared/star.component";
 var ProductModule = (function () {
     function ProductModule() {
@@ -44,7 +46,12 @@ ProductModule = __decorate([
             product_routes_1.productRoutes)
         ],
         //exports : [SharedModule,CustomerModule],
-        providers: [product_guard_canactivate_service_1.ProductDetailsCanActivateGuardService, product_detail_guard_candeactivate_service_1.ProductDetailCanDeactivateService],
+        providers: [
+            product_service_1.ProductService,
+            product_guard_canactivate_service_1.ProductDetailsCanActivateGuardService,
+            product_detail_guard_candeactivate_service_1.ProductDetailCanDeactivateService,
+            product_list_guard_canresolve_service_1.ProductListCanResolveGuard
+        ],
         declarations: [
             product_list_component_1.ProductListComponent,
             product_detail_component_1.ProductDetailComponent,

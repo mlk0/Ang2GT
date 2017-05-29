@@ -22,7 +22,7 @@ import { sharedRoutes } from "./shared.routes";
             sharedRoutes
         )
     ],
-    //exports : [StarComponent,NotFoundComponent],
+    exports : [NotFoundComponent],
 
     declarations: [
         StarComponent
