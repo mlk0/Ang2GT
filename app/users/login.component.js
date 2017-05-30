@@ -11,13 +11,15 @@ var LoginComponent = (function () {
     function LoginComponent() {
     }
     LoginComponent.prototype.loginUser = function (myForm) {
-        console.log('LoginComponent.loginUser : ' + JSON.stringify(myForm));
+        // console.log('LoginComponent.loginUser : ' +  JSON.stringify(myForm));
+        console.log(myForm);
     };
     return LoginComponent;
 }());
 LoginComponent = __decorate([
     core_1.Component({
         templateUrl: 'login.component.htm',
+        styleUrls: ['login.component.css'],
         moduleId: module.id
     })
 ], LoginComponent);

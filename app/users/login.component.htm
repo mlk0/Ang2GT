@@ -1,20 +1,31 @@
 <h1>Login</h1>
 <div class="col-md-4">
-    <form autocomplete="off" #myForm="ngForm" (ngSubmit)="loginUser(myForm.value)" novalidate>
+    <form autocomplete="off" #myForm="ngForm" (ngSubmit)="loginUser(myForm)" novalidate>
         <div class='form-group'>
             <label for='userName'>User Name :</label>
+            <em *ngIf='mouseOverSubmit && (myForm.controls.userName?.touched && myForm.controls.userName?.invalid)' class='required'>Required</em>
             <input type='text' id='userName' placeholder="User Name" class='form-control' 
-                (ngModel)='userName' name='userName' />
+                (ngModel)='userName' name='userName' required/>
         </div>
         <div class="form-group">
             <label for='password'>Password :</label>
+            <em *ngIf='mouseOverSubmit && (myForm.controls.password?.touched && myForm.controls.password?.invalid)' class="required">Required</em>
             <input type="password" id='password' placeholder="Password" class='form-control' 
-                (ngModel)='password' name='password'/>
+                (ngModel)='password' name='password' required/>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+
+        <span (mouseenter)='mouseOverSubmit=true' (mouseleave)='mouseOverSubmit=false'>
+        <button type="submit" class="btn btn-primary" [disabled] = 'myForm.invalid'   >Submit</button>
+        </span>
         <button type="button" class="btn btn-default">Cancel</button>
     </form>
 </div>
 
 
- 
+ <div class="col-md-2"> myForm.valid : {{myForm.valid}} </div>
+ <div class="col-md-2"> myForm.invalid : {{myForm.invalid}} </div>
+ <div class="col-md-2"> myForm.controls.userName?.invalid : {{myForm.controls.userName?.invalid}} </div>
+ <div class="col-md-2"> myForm.controls.userName?.touched : {{myForm.controls.userName?.touched}} </div>
+ <div class="col-md-2"> myForm.controls.password?.invalid : {{myForm.controls.password?.invalid}} </div>
+ <div class="col-md-2"> myForm.controls.password?.touched : {{myForm.controls.password?.touched}} </div>
+ <div class="col-md-2"> mouseOverSubmit : {{mouseOverSubmit}} </div>
