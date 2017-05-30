@@ -72,6 +72,9 @@ import { SharedModule } from "./shared/shared.module";
       { path: 'warehouse', loadChildren: 'app/warehouse/warehouse.module#WarehouseModule' },
       { path: 'vnd', loadChildren: 'app/vendors/vendor.module#VendorModule' },
       { path: 'crm', loadChildren : 'app/customers/customer.module#CustomerModule'},
+
+{ path: 'users', loadChildren : 'app/users/users.module#UsersModule'},
+
       //{ path: 'shared', loadChildren : 'app/shared/shared.module#SharedModule'}
       { path: '**', component: NotFoundComponent }
     ])
