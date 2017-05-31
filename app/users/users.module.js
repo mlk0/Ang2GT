@@ -20,7 +20,7 @@ var UsersModule = (function () {
 }());
 UsersModule = __decorate([
     core_1.NgModule({
-        imports: [forms_1.FormsModule, common_1.CommonModule,
+        imports: [forms_1.FormsModule, forms_1.ReactiveFormsModule, common_1.CommonModule,
             router_1.RouterModule.forChild(users_routes_1.usersRoutes)
         ],
         declarations: [login_component_1.LoginComponent, user_profile_component_1.UserProfileComponent]

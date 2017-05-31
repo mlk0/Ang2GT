@@ -44,4 +44,13 @@ export class AuthenticationService {
 
 
     }
+
+    updateUser(updatedUser : IUser){
+        this.currentUser.FirstName = updatedUser.FirstName;
+        this.currentUser.LastName = updatedUser.LastName;
+        this.currentUser.UserName = updatedUser.UserName;
+        this.currentUser.IsAdmin = updatedUser.IsAdmin;
+
+        console.log('Update currentUser to : ' + JSON.stringify(this.currentUser))
+    }
 }

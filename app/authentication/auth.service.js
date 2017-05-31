@@ -41,6 +41,13 @@ var AuthenticationService = (function () {
             //this.logOut(true);
         }
     };
+    AuthenticationService.prototype.updateUser = function (updatedUser) {
+        this.currentUser.FirstName = updatedUser.FirstName;
+        this.currentUser.LastName = updatedUser.LastName;
+        this.currentUser.UserName = updatedUser.UserName;
+        this.currentUser.IsAdmin = updatedUser.IsAdmin;
+        console.log('Update currentUser to : ' + JSON.stringify(this.currentUser));
+    };
     return AuthenticationService;
 }());
 AuthenticationService = __decorate([

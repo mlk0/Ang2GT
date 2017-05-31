@@ -1,7 +1,7 @@
 
 
 <h1>Update {{_authenticationService.currentUser?.UserName}}'s Profile</h1>
-<form>
+<!--<form>
     <div class="form-group">
         <label for="userName">User Name : </label>
         <input type="text" placeholder="User Name ..." id="userName" class="form-control"
@@ -23,4 +23,37 @@
         <input type="checkbox" id="isAdmin" class="form-control"
         [(ngModel)]='_authenticationService.currentUser.IsAdmin' name="isAdmin"/>
     </div>
+</form>-->
+
+<h2>in reactive form</h2>
+<form [formGroup]='profileFormGroup' (ngSubmit)='updateProfile(profileFormGroup.value)' >
+    <div class="form-group">
+        <label for="userName">User Name : </label>
+        <input type="text" placeholder="User Name ..." id="userName" class="form-control"
+        formControlName = 'userName'
+        />
+    </div>
+    <div class="form-group">
+        <label for="firstName">First Name : </label>
+        <input type="text" placeholder="First Name ..." id="firstName" class="form-control"
+         formControlName = 'givenName'
+        />
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name : </label>
+        <input type="text" placeholder="Last Name ..." id="lastName" class="form-control"
+         formControlName  = 'surName'
+        />
+    </div>
+    <div class="form-inline">
+        <label for="isAdmin">Is Administrator : </label>
+        <input type="checkbox" id="isAdmin" class="form-control"
+         formControlName = 'isAdministrator'
+        />
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Update</button>
+
+    <button type="button" class="btn btn-default" (click)='cancelUpdate()'>Cancel</button>
 </form>
