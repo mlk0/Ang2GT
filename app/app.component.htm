@@ -18,8 +18,10 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+<!--
+                <p *ngIf="_authenticationService.isAuthenticated()" class="navbar-text">Welcome {{_authenticationService.currentUser?.UserName }}</p>-->
 
-                <p *ngIf="_authenticationService.isAuthenticated()" class="navbar-text">Welcome {{_authenticationService.currentUser?.UserName }}</p>
+                <li *ngIf="_authenticationService.isAuthenticated()"><a [routerLink]="['/users/profile']">Welcome {{_authenticationService.currentUser?.UserName }}</a></li>
 
                 <li>
 

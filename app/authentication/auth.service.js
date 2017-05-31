@@ -31,7 +31,7 @@ var AuthenticationService = (function () {
                 FirstName: "Some",
                 LastName: "One",
                 UserName: userName,
-                IsAdmin: false
+                IsAdmin: true
             };
             this._router.navigate(['/prd/products']);
         }
