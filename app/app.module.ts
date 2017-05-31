@@ -37,6 +37,7 @@ import { AppComponent } from './app.component';
 //import { WarehouseComponent } from "./warehouse/warehouse.component";
 import { NotFoundComponent } from "./shared/NotFound/notfound.component";
 import { SharedModule } from "./shared/shared.module";
+import { AuthenticationService } from "./authentication/auth.service";
 
 
 
@@ -86,7 +87,10 @@ import { SharedModule } from "./shared/shared.module";
    , SharedModule
 
   ],
-  //providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
+  providers: [
+    //ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService
+    AuthenticationService
+    ],
   declarations: [
     AppComponent
     // , WarehouseComponent

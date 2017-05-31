@@ -2,24 +2,46 @@
     <nav class="navbar navbar-default">
         <div>
             <a class="navbar-brand">{{pageTitle}}</a>
+
             <ul class="nav navbar-nav">
                 <li><a [routerLink]="['/welcome']">Welcome</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav" *ngIf="_authenticationService.isAuthenticated()">
+                <!--<li><a [routerLink]="['/welcome']">Welcome</a></li>-->
                 <li><a [routerLink]="['/prd/products']">Products</a></li>
                 <li><a [routerLink]="['/crm/customers']">Customers</a></li>
                 <li><a [routerLink]="['/vnd/vendors']">Vendors</a></li>
                 <li><a [routerLink]="['/warehouse/locations']">Locations</a></li>
-                <li>
-                    <a [routerLink]="['/users/login']" >
-                        Login
-                    </a>
-                </li>
+
+
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <p *ngIf="_authenticationService.isAuthenticated()" class="navbar-text">Welcome {{_authenticationService.currentUser?.UserName }}</p>
+
+                <li>
+
+
+
+                    <a *ngIf="!_authenticationService.isAuthenticated()" [routerLink]="['/users/login']">
+                  Login
+                  </a>
+
+                    <a *ngIf="_authenticationService.isAuthenticated()" (click)='_authenticationService.logOut()'>
+                  LogOut
+                  </a>
+                </li>
+
+
+            </ul>
+
         </div>
     </nav>
     <div class="container">
+
         <router-outlet></router-outlet>
-        
+
     </div>
 </div>
-
- 

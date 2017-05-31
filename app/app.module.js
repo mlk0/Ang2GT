@@ -37,6 +37,7 @@ var app_component_1 = require("./app.component");
 //import { WarehouseComponent } from "./warehouse/warehouse.component";
 var notfound_component_1 = require("./shared/NotFound/notfound.component");
 var shared_module_1 = require("./shared/shared.module");
+var auth_service_1 = require("./authentication/auth.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -78,7 +79,10 @@ AppModule = __decorate([
             ,
             shared_module_1.SharedModule
         ],
-        //providers: [ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService],
+        providers: [
+            //ProductDetailsCanActivateGuardService, ProductDetailCanDeactivateService
+            auth_service_1.AuthenticationService
+        ],
         declarations: [
             app_component_1.AppComponent
             // , WarehouseComponent

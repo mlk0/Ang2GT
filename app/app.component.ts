@@ -2,6 +2,7 @@ import {Component} from "@angular/core"
 //import { ProductListComponent } from "./products/product-list.component";
 //import { ProductService } from "./products/product-service";
 import { CustomerService } from "./customers/customers-service";
+import { AuthenticationService } from "./authentication/auth.service";
 //import { ProductListCanResolveGuard } from "./products/product-list-guard-canresolve.service";
 
 @Component({
@@ -22,4 +23,7 @@ import { CustomerService } from "./customers/customers-service";
 })
 export class AppComponent {
     pageTitle : string = 'Acme Product Management';
+    constructor(private _authenticationService : AuthenticationService){
+        
+    }
 }
