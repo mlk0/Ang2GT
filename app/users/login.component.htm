@@ -1,7 +1,7 @@
 <h1>Login</h1>
 <div class="row">
 
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form autocomplete="off" #myForm="ngForm" (ngSubmit)="loginUser(myForm)" novalidate>
             <div class='form-group'>
                 <label for='userName'>User Name :</label>
@@ -35,6 +35,26 @@
                     <label for="zip">Zip : </label>
                     <input type="text" id="zip" placeholder="zip" class="form-control" (ngModel)='zip' name='zip' />
                 </div>
+            </div>
+
+            <div class="form-group">
+                <label for="imagePath">Image Url:</label>
+                <em class="required" *ngIf="myForm.controls.imageUrl?.invalid && myForm.controls.imageUrl?.touched">Required or Wrong Pattern</em>
+                <input type="text" placeholder="Image Url ..." id="imagePath" class="form-control" (ngModel)="imageUrl" name="imageUrl" required
+                    pattern=".*\/.*.(png|jpg)" />
+                <img [src]="myForm.controls.imageUrl.value" *ngIf="myForm.controls.imageUrl?.valid" />
+
+                <div >
+                    <label>Sample Image Urls</label>
+                    <div>
+                        https://cdn2.iconfinder.com/data/icons/free-3d-printer-icon-set/128/Plastic_model.png
+                    </div>
+
+                    <div>
+                        https://cdn2.iconfinder.com/data/icons/free-3d-printer-icon-set/128/3d_objects.png
+                    </div>
+                </div>
+
             </div>
 
             <span (mouseenter)='mouseOverSubmit=true' (mouseleave)='mouseOverSubmit=false'>
