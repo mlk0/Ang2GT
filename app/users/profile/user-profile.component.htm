@@ -47,17 +47,18 @@
         <label for="isAdmin">Is Administrator : </label>
         <input type="checkbox" id="isAdmin" class="form-control" formControlName='isAdministrator' />
     </div>
-    <!--<div>
+    <div formGroupName="location">
+     
         <label>location</label>
         <div class="form-group">
             <label for="address">Address : </label>
-            <input type="text" id="address" placeholder="address" class="form-control" formControlName="location.address" />
+            <input type="text" id="address" placeholder="address" class="form-control" formControlName="address" />
         </div>
         <div class="form-group">
             <label for="zip">Zip : </label>
-            <input type="text" id="zip" placeholder="zip" class="form-control" formControlName="location.zip" />
+            <input type="text" id="zip" placeholder="zip" class="form-control" formControlName="zip" />
         </div>
-    </div>-->
+    </div>
 
     <button type="submit" class="btn btn-primary" [disabled]='profileFormGroup.invalid'>Update</button>
 

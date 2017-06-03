@@ -27,10 +27,11 @@ export class UserProfileComponent implements OnInit {
             userName: new FormControl(this._authenticationService.currentUser.UserName, Validators.required),
             id: new FormControl(this._authenticationService.currentUser.UserId),
 
-            location: new FormControl({
+            location: new FormGroup({
                 address: new FormControl("address sample"),
                 zip: new FormControl("12334")
             })
+
         });
     }
 
@@ -38,24 +39,24 @@ export class UserProfileComponent implements OnInit {
         this._router.navigate(['welcome']);
     }
 
-    updateProfile(form: any) {
+    updateProfile(profileFormGroupValue: NgForm) {
 
 
-        console.log(form);
+        console.log("profileFormGroup.value : " + JSON.stringify(profileFormGroupValue) );
 
         if (this.profileFormGroup.valid) {
 
             let updatedUser: IUser;
             updatedUser = {
                 UserId: this._authenticationService.currentUser.UserId,
-                UserName: form.userName,
-                FirstName: form.givenName,
-                LastName: form.surName,
-                IsAdmin: form.isAdministrator
+                UserName: profileFormGroupValue.userName,
+                FirstName: profileFormGroupValue.givenName,
+                LastName: profileFormGroupValue.surName,
+                IsAdmin: profileFormGroupValue.isAdministrator
 
             }
 
-            console.log(updatedUser);
+            console.log("updatedUser : " + JSON.stringify(updatedUser) );
 
             this._authenticationService.updateUser(updatedUser);
         }

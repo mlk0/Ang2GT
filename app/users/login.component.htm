@@ -40,9 +40,16 @@
             <div class="form-group">
                 <label for="imagePath">Image Url:</label>
                 <em class="required" *ngIf="myForm.controls.imageUrl?.invalid && myForm.controls.imageUrl?.touched">Required or Wrong Pattern</em>
-                <input type="text" placeholder="Image Url ..." id="imagePath" class="form-control" (ngModel)="imageUrl" name="imageUrl" required
-                    pattern=".*\/.*.(png|jpg)" />
-                <img [src]="myForm.controls.imageUrl.value" *ngIf="myForm.controls.imageUrl?.valid" />
+                <input type="text" placeholder="Image Url ..." 
+                id="imagePath" class="form-control" 
+                (ngModel)="imageUrl" name="imageUrl"  /> 
+                    <!-- those are commented out in order to facilitate the login without actually pasting the url
+                        
+                        required
+                    pattern=".*\/.*.(png|jpg)" 
+                    />-->
+                <img [src]="myForm.controls.imageUrl.value" 
+                    *ngIf="myForm.controls.imageUrl?.valid" />
 
                 <div >
                     <label>Sample Image Urls</label>

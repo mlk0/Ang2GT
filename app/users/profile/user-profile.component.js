@@ -28,7 +28,7 @@ var UserProfileComponent = (function () {
             isAdministrator: isAdmin,
             userName: new forms_1.FormControl(this._authenticationService.currentUser.UserName, forms_1.Validators.required),
             id: new forms_1.FormControl(this._authenticationService.currentUser.UserId),
-            location: new forms_1.FormControl({
+            location: new forms_1.FormGroup({
                 address: new forms_1.FormControl("address sample"),
                 zip: new forms_1.FormControl("12334")
             })
@@ -37,18 +37,18 @@ var UserProfileComponent = (function () {
     UserProfileComponent.prototype.cancelUpdate = function () {
         this._router.navigate(['welcome']);
     };
-    UserProfileComponent.prototype.updateProfile = function (form) {
-        console.log(form);
+    UserProfileComponent.prototype.updateProfile = function (profileFormGroupValue) {
+        console.log("profileFormGroup.value : " + JSON.stringify(profileFormGroupValue));
         if (this.profileFormGroup.valid) {
             var updatedUser = void 0;
             updatedUser = {
                 UserId: this._authenticationService.currentUser.UserId,
-                UserName: form.userName,
-                FirstName: form.givenName,
-                LastName: form.surName,
-                IsAdmin: form.isAdministrator
+                UserName: profileFormGroupValue.userName,
+                FirstName: profileFormGroupValue.givenName,
+                LastName: profileFormGroupValue.surName,
+                IsAdmin: profileFormGroupValue.isAdministrator
             };
-            console.log(updatedUser);
+            console.log("updatedUser : " + JSON.stringify(updatedUser));
             this._authenticationService.updateUser(updatedUser);
         }
     };
