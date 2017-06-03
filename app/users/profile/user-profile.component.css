@@ -1,0 +1,6 @@
+em { color: red; float: right; padding-left: 10px;} 
+.error input {background-color: #E05C65}
+.error ::-webkit-input-placeholder { color: #E05C65}
+.error ::-moz-placeholder {color: #E05C65}
+.error :-moz-placeholder {color: #E05C65}
+.error :-ms-input-placeholder {color: #E05C65}

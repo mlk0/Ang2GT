@@ -19,37 +19,55 @@ var UserProfileComponent = (function () {
         this._router = _router;
     }
     UserProfileComponent.prototype.ngOnInit = function () {
-        var firstName = new forms_1.FormControl(this._authenticationService.currentUser.FirstName);
+        var firstName = new forms_1.FormControl(this._authenticationService.currentUser.FirstName, [forms_1.Validators.required, forms_1.Validators.pattern("^[a-zA-Z ]+$")]); //must not contain special characters nor numbers, only letters
         var lastName = new forms_1.FormControl(this._authenticationService.currentUser.LastName);
         var isAdmin = new forms_1.FormControl(this._authenticationService.currentUser.IsAdmin);
         this.profileFormGroup = new forms_1.FormGroup({
             givenName: firstName,
             surName: lastName,
             isAdministrator: isAdmin,
-            userName: new forms_1.FormControl(this._authenticationService.currentUser.UserName),
-            id: new forms_1.FormControl(this._authenticationService.currentUser.UserId)
+            userName: new forms_1.FormControl(this._authenticationService.currentUser.UserName, forms_1.Validators.required),
+            id: new forms_1.FormControl(this._authenticationService.currentUser.UserId),
+            location: new forms_1.FormControl({
+                address: new forms_1.FormControl("address sample"),
+                zip: new forms_1.FormControl("12334")
+            })
         });
     };
     UserProfileComponent.prototype.cancelUpdate = function () {
         this._router.navigate(['welcome']);
     };
     UserProfileComponent.prototype.updateProfile = function (form) {
-        var updatedUser;
-        updatedUser = {
-            UserId: this._authenticationService.currentUser.UserId,
-            UserName: form.userName,
-            FirstName: form.givenName,
-            LastName: form.surName,
-            IsAdmin: form.isAdministrator
-        };
-        console.log(updatedUser);
-        this._authenticationService.updateUser(updatedUser);
+        console.log(form);
+        if (this.profileFormGroup.valid) {
+            var updatedUser = void 0;
+            updatedUser = {
+                UserId: this._authenticationService.currentUser.UserId,
+                UserName: form.userName,
+                FirstName: form.givenName,
+                LastName: form.surName,
+                IsAdmin: form.isAdministrator
+            };
+            console.log(updatedUser);
+            this._authenticationService.updateUser(updatedUser);
+        }
+    };
+    UserProfileComponent.prototype.isValidUserName = function () {
+        var userNameValidity = this.profileFormGroup.controls.userName.valid || this.profileFormGroup.controls.userName.untouched;
+        console.log('userNameValidity : ' + userNameValidity);
+        return userNameValidity;
+    };
+    UserProfileComponent.prototype.isValidGivenName = function () {
+        var givenNameIsValid = this.profileFormGroup.controls.givenName.valid || this.profileFormGroup.controls.givenName.untouched;
+        console.log('givenNameIsValid : ' + givenNameIsValid);
+        return givenNameIsValid;
     };
     return UserProfileComponent;
 }());
 UserProfileComponent = __decorate([
     core_1.Component({
         templateUrl: 'user-profile.component.htm',
+        styleUrls: ['user-profile.component.css'],
         moduleId: module.id
     }),
     __metadata("design:paramtypes", [auth_service_1.AuthenticationService,

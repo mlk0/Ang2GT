@@ -18,6 +18,8 @@ export class LoginComponent {
 
       // console.log('LoginComponent.loginUser : ' +  JSON.stringify(myForm));
      console.log(myForm);
+     console.log(myForm.value);
+     console.log('myForm.value.userName : ' + myForm.value.userName + ', myForm.value.password : ' + myForm.value.password);
      this._authenticationService.authetnicateUser(myForm.value.userName, myForm.value.password);
 
     }
